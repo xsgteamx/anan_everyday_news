@@ -6,91 +6,60 @@
   <meta name="date" content="YYYY-MM-DD">
   <title>安安每日信息流｜YYYY-MM-DD</title>
   <style>
-    :root { color-scheme: light dark; --bg:#0b1020; --bg2:#111827; --card:rgba(255,255,255,.92); --glass:rgba(255,255,255,.12); --text:#111827; --muted:#6b7280; --line:rgba(148,163,184,.28); --accent:#7c3aed; --accent2:#06b6d4; --accent3:#f97316; --green:#16a34a; --red:#dc2626; --yellow:#ca8a04; --shadow:0 18px 50px rgba(2,6,23,.22); }
-    @media (prefers-color-scheme: dark) { :root { --card:rgba(15,23,42,.86); --glass:rgba(15,23,42,.55); --text:#e5e7eb; --muted:#9ca3af; --line:rgba(148,163,184,.22); } }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
+    :root { color-scheme: light dark; --bg:#0b1020; --bg2:#111827; --card:rgba(255,255,255,.92); --text:#111827; --muted:#6b7280; --line:rgba(148,163,184,.28); --accent:#7c3aed; --green:#16a34a; --yellow:#ca8a04; --shadow:0 18px 50px rgba(2,6,23,.22); }
+    @media (prefers-color-scheme:dark) { :root { --card:rgba(15,23,42,.88); --text:#e5e7eb; --muted:#9ca3af; --line:rgba(148,163,184,.22); } }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; }
     body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; color:var(--text); line-height:1.62; background:radial-gradient(circle at 18% 0%,rgba(124,58,237,.42),transparent 30%),radial-gradient(circle at 92% 12%,rgba(6,182,212,.32),transparent 30%),radial-gradient(circle at 50% 95%,rgba(249,115,22,.20),transparent 26%),linear-gradient(180deg,var(--bg),var(--bg2)); min-height:100vh; }
-    a { color:inherit; text-decoration:none; }
-    .page { width:min(1100px,100%); margin:0 auto; padding:14px 12px 46px; }
+    a { color:inherit; text-decoration:none; } a:hover { text-decoration:underline; }
+    .page { width:min(1120px,100%); margin:0 auto; padding:14px 12px 46px; }
     .topbar { position:sticky; top:0; z-index:20; display:flex; gap:8px; overflow-x:auto; padding:8px 0 12px; backdrop-filter:blur(16px); }
     .topbar a { flex:0 0 auto; padding:8px 11px; border:1px solid rgba(255,255,255,.18); border-radius:999px; background:rgba(255,255,255,.12); color:#fff; font-size:13px; white-space:nowrap; }
     .hero { position:relative; overflow:hidden; border-radius:28px; padding:26px 18px; color:#fff; border:1px solid rgba(255,255,255,.20); background:linear-gradient(135deg,rgba(124,58,237,.88),rgba(6,182,212,.72)),linear-gradient(45deg,rgba(0,0,0,.4),transparent); box-shadow:var(--shadow); }
     .hero::after { content:""; position:absolute; right:-70px; top:-90px; width:260px; height:260px; border-radius:50%; background:rgba(255,255,255,.18); }
     .eyebrow { margin:0 0 7px; opacity:.9; font-size:14px; }
     h1 { position:relative; margin:0; font-size:clamp(34px,8vw,64px); line-height:1.02; letter-spacing:-1.8px; }
-    .summary { position:relative; max-width:760px; margin:12px 0 0; font-size:17px; opacity:.95; }
+    .summary { position:relative; max-width:780px; margin:12px 0 0; font-size:17px; opacity:.95; }
     .hero-meta { position:relative; display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
     .pill { display:inline-flex; align-items:center; gap:5px; border-radius:999px; padding:6px 10px; font-size:12px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.20); }
+    .quick-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px; }
+    .quick-card { padding:13px; border-radius:18px; background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.20); }
+    .quick-card b { display:block; font-size:22px; } .quick-card span { font-size:12px; opacity:.85; }
+    @media (max-width:820px) { .quick-cards { grid-template-columns:repeat(2,1fr); } }
     .section { margin-top:16px; }
     .section-title { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 2px 10px; color:#fff; }
-    .section-title h2 { margin:0; font-size:22px; }
-    .section-title span { color:rgba(255,255,255,.72); font-size:13px; }
-    .card,.story,.panel { background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:0 12px 36px rgba(2,6,23,.18); overflow:hidden; backdrop-filter:blur(18px); }
+    .section-title h2 { margin:0; font-size:22px; } .section-title span { color:rgba(255,255,255,.72); font-size:13px; }
+    .story,.panel { background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:0 12px 36px rgba(2,6,23,.18); overflow:hidden; backdrop-filter:blur(18px); }
     .panel { padding:16px; }
-    .log-table { width:100%; border-collapse:collapse; font-size:14px; }
-    .log-table th,.log-table td { padding:10px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
-    .lead-layout { display:grid; grid-template-columns:1.15fr .85fr; gap:14px; }
-    .story-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-    .two-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+    .log-table { width:100%; border-collapse:collapse; font-size:14px; } .log-table th,.log-table td { padding:10px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    .lead-layout { display:grid; grid-template-columns:1.15fr .85fr; gap:14px; } .story-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; } .two-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
     @media (max-width:820px) { .lead-layout,.story-grid,.two-grid { grid-template-columns:1fr; } }
-    .story { min-height:100%; }
-    .story-body { padding:14px; }
-    .story h3 { margin:0 0 8px; font-size:18px; line-height:1.28; }
-    .story p { margin:8px 0; }
-    .story.lead h3 { font-size:clamp(23px,5vw,34px); }
-    .cover { position:relative; min-height:150px; padding:16px; display:flex; flex-direction:column; justify-content:space-between; color:#fff; isolation:isolate; overflow:hidden; }
-    .cover::before { content:""; position:absolute; inset:-40%; background:radial-gradient(circle,rgba(255,255,255,.34),transparent 28%); transform:rotate(12deg); z-index:-1; }
-    .cover svg { width:86px; height:86px; opacity:.9; filter:drop-shadow(0 18px 30px rgba(0,0,0,.2)); }
-    .cover b { font-size:13px; letter-spacing:.14em; text-transform:uppercase; opacity:.86; }
-    .cover span { font-size:24px; font-weight:800; letter-spacing:-1px; }
-    .cover-ai { background:linear-gradient(135deg,#4f46e5,#06b6d4); }
-    .cover-china { background:linear-gradient(135deg,#dc2626,#f97316); }
-    .cover-hpc { background:linear-gradient(135deg,#0f172a,#2563eb); }
-    .cover-game { background:linear-gradient(135deg,#16a34a,#84cc16); }
-    .cover-security { background:linear-gradient(135deg,#7f1d1d,#db2777); }
-    .cover-dev { background:linear-gradient(135deg,#312e81,#7c3aed); }
-    .source-row { display:flex; gap:7px; flex-wrap:wrap; align-items:center; margin-top:12px; }
-    .badge { display:inline-flex; align-items:center; gap:5px; padding:4px 8px; border-radius:999px; font-size:12px; border:1px solid var(--line); }
-    .grade-a { background:rgba(22,163,74,.12); color:var(--green); }
-    .grade-b { background:rgba(202,138,4,.14); color:var(--yellow); }
-    .grade-c { background:rgba(124,58,237,.12); color:var(--accent); }
-    .source-link { color:var(--accent); font-size:13px; }
-    .rank { display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border-radius:9px; background:var(--accent); color:#fff; font-weight:800; margin-right:6px; }
-    .quick-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px; }
-    @media (max-width:820px) { .quick-cards { grid-template-columns:repeat(2,1fr); } }
-    .quick-card { padding:13px; border-radius:18px; background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.20); }
-    .quick-card b { display:block; font-size:22px; }
-    .quick-card span { font-size:12px; opacity:.85; }
-    .action-list { display:grid; gap:10px; }
-    .action { padding:13px; border-radius:18px; background:color-mix(in srgb,var(--card) 90%,rgba(124,58,237,.20)); border:1px solid var(--line); }
-    .action strong { display:block; margin-bottom:4px; }
+    .story-body { padding:14px; } .story h3 { margin:0 0 8px; font-size:18px; line-height:1.28; } .story p { margin:8px 0; } .story.lead h3 { font-size:clamp(23px,5vw,34px); }
+    .cover { position:relative; min-height:160px; padding:16px; display:flex; align-items:center; justify-content:space-between; color:#fff; overflow:hidden; }
+    .cover::before { content:""; position:absolute; inset:-45%; background:radial-gradient(circle,rgba(255,255,255,.34),transparent 28%); transform:rotate(12deg); }
+    .cover-text { position:relative; z-index:2; display:flex; flex-direction:column; gap:4px; } .cover b { font-size:13px; letter-spacing:.14em; text-transform:uppercase; opacity:.86; } .cover span { font-size:24px; font-weight:800; letter-spacing:-1px; }
+    .cover-img-wrap { position:relative; z-index:2; width:94px; height:94px; border-radius:26px; display:grid; place-items:center; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.26); box-shadow:0 18px 40px rgba(0,0,0,.22); }
+    .cover-img { width:66px; height:66px; object-fit:contain; display:block; }
+    .cover-ai { background:linear-gradient(135deg,#4f46e5,#06b6d4); } .cover-china { background:linear-gradient(135deg,#dc2626,#f97316); } .cover-hpc { background:linear-gradient(135deg,#0f172a,#2563eb); } .cover-game { background:linear-gradient(135deg,#16a34a,#84cc16); } .cover-security { background:linear-gradient(135deg,#7f1d1d,#db2777); } .cover-dev { background:linear-gradient(135deg,#312e81,#7c3aed); }
+    .source-row { display:flex; gap:7px; flex-wrap:wrap; align-items:center; margin-top:12px; } .badge { display:inline-flex; align-items:center; gap:5px; padding:4px 8px; border-radius:999px; font-size:12px; border:1px solid var(--line); } .grade-a { background:rgba(22,163,74,.12); color:var(--green); } .grade-b { background:rgba(202,138,4,.14); color:var(--yellow); } .grade-c { background:rgba(124,58,237,.12); color:var(--accent); } .source-link { color:var(--accent); font-size:13px; } .rank { display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border-radius:9px; background:var(--accent); color:#fff; font-weight:800; margin-right:6px; }
+    .action-list { display:grid; gap:10px; } .action { padding:13px; border-radius:18px; background:color-mix(in srgb,var(--card) 90%,rgba(124,58,237,.20)); border:1px solid var(--line); } .action strong { display:block; margin-bottom:4px; }
     footer { color:rgba(255,255,255,.74); font-size:13px; margin-top:20px; padding:0 4px; }
   </style>
 </head>
 <body>
   <main class="page">
-    <nav class="topbar" aria-label="快速跳转">
-      <a href="#top-stories">🔥 今日重点</a><a href="#ai-tech">🤖 AI 科技</a><a href="#freebies">🎁 领福利</a><a href="#games-community">🎮 游戏社区</a><a href="#devops">🛠 开发运维</a><a href="#actions">✅ 行动</a><a href="#afternoon-update">🌇 下午增量</a>
-    </nav>
-    <header class="hero">
-      <p class="eyebrow">YYYY-MM-DD · 今日网页 · index.html</p>
-      <h1>安安每日信息流</h1>
-      <p class="summary">待 08:30 主简报更新。这里会写今天最重要的主线，而不是新闻大杂烩。</p>
-      <div class="hero-meta"><span class="pill">A级来源：权威媒体/官方</span><span class="pill">B级来源：媒体报道</span><span class="pill">C级来源：观察/方法参考</span></div>
-      <div class="quick-cards"><div class="quick-card"><b>0</b><span>今日主卡片</span></div><div class="quick-card"><b>0</b><span>可立即行动</span></div><div class="quick-card"><b>0</b><span>生物相关内容</span></div><div class="quick-card"><b>15:30</b><span>只补增量</span></div></div>
-    </header>
+    <nav class="topbar" aria-label="快速跳转"><a href="#top-stories">🔥 今日重点</a><a href="#ai-tech">🤖 AI 科技</a><a href="#freebies">🎁 领福利</a><a href="#games-community">🎮 游戏社区</a><a href="#devops">🛠 开发运维</a><a href="#risk-policy">🛡 风险</a><a href="#actions">✅ 行动</a><a href="#afternoon-update">🌇 下午增量</a></nav>
+    <header class="hero"><p class="eyebrow">YYYY-MM-DD · 今日网页 · index.html</p><h1>安安每日信息流</h1><p class="summary">待 08:30 主简报更新。这里会写今天最重要的主线，并且主新闻卡片必须包含真实 <code>&lt;img src="外站URL"&gt;</code> 关联图片。</p><div class="hero-meta"><span class="pill">A级来源：权威媒体/官方</span><span class="pill">B级来源：媒体报道</span><span class="pill">C级来源：观察/方法参考</span></div><div class="quick-cards"><div class="quick-card"><b>0</b><span>新闻/行动卡片</span></div><div class="quick-card"><b>0</b><span>外链关联图</span></div><div class="quick-card"><b>0</b><span>可立即行动</span></div><div class="quick-card"><b>15:30</b><span>只补增量</span></div></div></header>
     <section id="update-log" class="section"><div class="section-title"><h2>更新记录</h2><span>自动化定位区</span></div><div class="panel"><table class="log-table"><thead><tr><th>时间</th><th>类型</th><th>状态</th></tr></thead><tbody><tr><td>08:30</td><td>主简报</td><td>待更新</td></tr><tr><td>15:30</td><td>下午增量</td><td>待更新</td></tr><tr><td>01:00</td><td>自动归档</td><td>归档到 archive/YYYY/MM/YYYY-MM-DD.html</td></tr></tbody></table></div></section>
     <section id="overview" class="section"><div class="section-title"><h2>今日一句话总览</h2><span>先看这个</span></div><div class="panel"><p>待更新。</p></div></section>
-    <section id="top-stories" class="section"><div class="section-title"><h2>今日最值得看的事</h2><span>按价值排序</span></div><div class="panel"><p>待更新。主新闻建议使用视觉封面卡片、来源等级和来源链接。</p></div></section>
-    <section id="ai-tech" class="section"><div class="section-title"><h2>AI / 科技 / 互联网</h2><span>少而准</span></div><div class="panel"><p>待更新。</p></div></section>
+    <section id="top-stories" class="section"><div class="section-title"><h2>今日最值得看的事</h2><span>按价值排序</span></div><div class="panel"><p>待更新。主新闻必须包含真实图片标签、来源等级和来源链接。</p></div></section>
+    <section id="ai-tech" class="section"><div class="section-title"><h2>AI / 科技 / 互联网</h2><span>扩容版</span></div><div class="panel"><p>待更新。</p></div></section>
     <section id="freebies" class="section"><div class="section-title"><h2>免费资源 / 薅羊毛 / 信息差</h2><span>今天能做</span></div><div class="panel"><p>待更新。</p></div></section>
     <section id="games-community" class="section"><div class="section-title"><h2>游戏 / 限免 / 社区热聊</h2><span>筛掉低价值小新闻</span></div><div class="panel"><p>待更新。</p></div></section>
     <section id="devops" class="section"><div class="section-title"><h2>开发 / 运维 / 自建服务</h2><span>把新闻转成动作</span></div><div class="panel"><p>待更新。</p></div></section>
     <section id="risk-policy" class="section"><div class="section-title"><h2>风险 / 安全 / 政策提醒</h2><span>别让自动化变成事故源</span></div><div class="panel"><p>待更新。</p></div></section>
     <section id="actions" class="section"><div class="section-title"><h2>今日行动建议</h2><span>只保留能做的</span></div><div class="panel action-list"><div class="action"><strong>待更新</strong>08:30 主简报写入后补充。</div></div></section>
     <section id="afternoon-update" class="section"><div class="section-title"><h2>15:30 下午增量更新</h2><span>等待自动补充</span></div><div class="panel"><p>待更新。下午只补增量，不重复上午内容。</p></div></section>
-    <section id="media-assets" class="section"><div class="section-title"><h2>图片与素材</h2><span>关联视觉图策略</span></div><div class="panel"><p>默认优先使用内嵌 SVG 主题视觉图，避免热链新闻图片导致版权、失效和加载问题。真实截图请保存到 <code>assets/YYYY-MM-DD/</code> 后引用。</p></div></section>
+    <section id="media-assets" class="section"><div class="section-title"><h2>图片与素材</h2><span>真实图片规则</span></div><div class="panel"><p>主新闻卡片必须使用真实 <code>&lt;img src="外站URL"&gt;</code>。优先用官方 Logo、来源站点图标、项目图标或本地截图；后续真实截图保存到 <code>assets/YYYY-MM-DD/</code>。</p></div></section>
     <footer><p>归档规则：每天凌晨 1:00 将本页归档为 <code>archive/YYYY/MM/YYYY-MM-DD.html</code>，然后重置为新的今日页。</p></footer>
   </main>
 </body>
