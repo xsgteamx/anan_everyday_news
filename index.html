@@ -6,254 +6,72 @@
   <meta name="date" content="2026-06-25">
   <title>安安每日信息流｜2026-06-25</title>
   <style>
-    :root {
-      color-scheme: light dark;
-      --bg: #090d18;
-      --bg2: #121827;
-      --card: rgba(255, 255, 255, 0.94);
-      --soft: rgba(255,255,255,.08);
-      --text: #111827;
-      --muted: #6b7280;
-      --line: rgba(148, 163, 184, 0.28);
-      --accent: #7c3aed;
-      --cyan: #06b6d4;
-      --orange: #f97316;
-      --green: #16a34a;
-      --yellow: #ca8a04;
-      --red: #dc2626;
-      --shadow: 0 18px 50px rgba(2, 6, 23, 0.26);
-    }
-    @media (prefers-color-scheme: dark) {
-      :root { --card: rgba(15, 23, 42, 0.90); --text: #e5e7eb; --muted: #9ca3af; --line: rgba(148, 163, 184, 0.22); }
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      color: var(--text);
-      line-height: 1.62;
-      background:
-        radial-gradient(circle at 18% 0%, rgba(124, 58, 237, 0.42), transparent 30%),
-        radial-gradient(circle at 92% 12%, rgba(6, 182, 212, 0.30), transparent 30%),
-        radial-gradient(circle at 50% 95%, rgba(249, 115, 22, 0.18), transparent 26%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      min-height: 100vh;
-    }
-    a { color: inherit; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .page { width: min(1180px, 100%); margin: 0 auto; padding: 14px 12px 52px; }
-    .topbar { position: sticky; top: 0; z-index: 20; display: flex; gap: 8px; overflow-x: auto; padding: 8px 0 12px; backdrop-filter: blur(18px); }
-    .topbar a { flex: 0 0 auto; padding: 8px 11px; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; background: rgba(255,255,255,.12); color: #fff; font-size: 13px; white-space: nowrap; }
-    .hero { position: relative; overflow: hidden; border-radius: 30px; padding: 26px 18px; color: #fff; border: 1px solid rgba(255,255,255,.20); background: linear-gradient(135deg, rgba(124,58,237,.88), rgba(6,182,212,.72)), linear-gradient(45deg, rgba(0,0,0,.4), transparent); box-shadow: var(--shadow); }
-    .hero::after { content: ""; position: absolute; right: -74px; top: -94px; width: 280px; height: 280px; border-radius: 50%; background: rgba(255,255,255,.16); }
-    .eyebrow { margin: 0 0 7px; opacity: .9; font-size: 14px; }
-    h1 { position: relative; margin: 0; font-size: clamp(34px, 8vw, 66px); line-height: 1.02; letter-spacing: -1.8px; }
-    .summary { position: relative; max-width: 840px; margin: 12px 0 0; font-size: 17px; opacity: .95; }
-    .hero-meta { position: relative; display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
-    .pill { display: inline-flex; align-items: center; gap: 5px; border-radius: 999px; padding: 6px 10px; font-size: 12px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.20); }
-    .quick-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
-    .quick-card { padding: 13px; border-radius: 18px; background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.20); }
-    .quick-card b { display: block; font-size: 22px; }
-    .quick-card span { font-size: 12px; opacity: .85; }
-    @media (max-width: 820px) { .quick-cards { grid-template-columns: repeat(2, 1fr); } }
-    .section { margin-top: 17px; }
-    .section-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 2px 10px; color: #fff; }
-    .section-title h2 { margin: 0; font-size: 22px; }
-    .section-title span { color: rgba(255,255,255,.72); font-size: 13px; }
-    .panel, .news-card, .compact-card { background: var(--card); border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 12px 36px rgba(2,6,23,.20); overflow: hidden; backdrop-filter: blur(18px); }
-    .panel { padding: 16px; }
-    .log-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-    .log-table th, .log-table td { padding: 10px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
-    .lead-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 14px; }
-    .stack { display: grid; gap: 14px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    @media (max-width: 900px) { .lead-grid, .grid-3, .grid-2 { grid-template-columns: 1fr; } }
-    .news-img { width: 100%; height: 180px; object-fit: cover; display: block; background: linear-gradient(135deg, rgba(124,58,237,.4), rgba(6,182,212,.4)); }
-    .lead-card .news-img { height: 280px; }
-    .media-failed .news-img { display: none; }
-    .media-failed .fallback { display: grid; }
-    .fallback { display: none; min-height: 180px; place-items: center; padding: 20px; color: #fff; text-align: center; background: linear-gradient(135deg, #4f46e5, #06b6d4); }
-    .body { padding: 14px; }
-    .news-card h3, .compact-card h3 { margin: 0 0 8px; font-size: 18px; line-height: 1.28; }
-    .lead-card h3 { font-size: clamp(24px, 5vw, 36px); }
-    p { margin: 8px 0; }
-    .meta { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; margin-bottom: 10px; }
-    .badge { display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 999px; font-size: 12px; border: 1px solid var(--line); }
-    .grade-a { background: rgba(22,163,74,.12); color: var(--green); }
-    .grade-b { background: rgba(202,138,4,.14); color: var(--yellow); }
-    .grade-c { background: rgba(124,58,237,.12); color: var(--accent); }
-    .category { background: rgba(6,182,212,.12); color: var(--cyan); }
-    .rank { display: inline-flex; width: 26px; height: 26px; align-items: center; justify-content: center; border-radius: 9px; background: var(--accent); color: #fff; font-weight: 800; margin-right: 6px; }
-    .source-link { color: var(--accent); font-size: 13px; }
-    .points { padding-left: 18px; margin: 10px 0; }
-    .points li { margin: 5px 0; }
-    details { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 10px; }
-    summary { cursor: pointer; color: var(--accent); font-weight: 700; }
-    .decision { display: grid; gap: 8px; }
-    .decision-row { display: grid; grid-template-columns: 82px 1fr; gap: 8px; font-size: 14px; }
-    .decision-row b { color: var(--muted); }
-    .verdict { display: inline-flex; width: fit-content; padding: 6px 10px; border-radius: 999px; font-weight: 800; background: rgba(22,163,74,.14); color: var(--green); }
-    .compact-card { padding: 14px; }
-    .action-list { display: grid; gap: 10px; }
-    .action { padding: 13px; border-radius: 18px; background: color-mix(in srgb, var(--card) 90%, rgba(124,58,237,.20)); border: 1px solid var(--line); }
-    .action strong { display: block; margin-bottom: 4px; }
-    footer { color: rgba(255,255,255,.74); font-size: 13px; margin-top: 20px; padding: 0 4px; }
+    :root { color-scheme: light dark; --bg:#090d18; --bg2:#121827; --card:rgba(255,255,255,.95); --text:#111827; --muted:#6b7280; --line:rgba(148,163,184,.30); --accent:#7c3aed; --cyan:#06b6d4; --green:#16a34a; --yellow:#ca8a04; --red:#dc2626; --shadow:0 18px 50px rgba(2,6,23,.26); }
+    @media (prefers-color-scheme:dark) { :root { --card:rgba(15,23,42,.90); --text:#e5e7eb; --muted:#9ca3af; --line:rgba(148,163,184,.22); } }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; color:var(--text); line-height:1.62; background:radial-gradient(circle at 18% 0%,rgba(124,58,237,.42),transparent 30%),radial-gradient(circle at 92% 12%,rgba(6,182,212,.30),transparent 30%),radial-gradient(circle at 50% 95%,rgba(249,115,22,.18),transparent 26%),linear-gradient(180deg,var(--bg),var(--bg2)); min-height:100vh; }
+    a { color:inherit; text-decoration:none; } a:hover { text-decoration:underline; }
+    .page { width:min(1180px,100%); margin:0 auto; padding:14px 12px 52px; }
+    .topbar { position:sticky; top:0; z-index:20; display:flex; gap:8px; overflow-x:auto; padding:8px 0 12px; backdrop-filter:blur(18px); }
+    .topbar a { flex:0 0 auto; padding:8px 11px; border:1px solid rgba(255,255,255,.18); border-radius:999px; background:rgba(255,255,255,.12); color:#fff; font-size:13px; white-space:nowrap; }
+    .hero { position:relative; overflow:hidden; border-radius:30px; padding:26px 18px; color:#fff; border:1px solid rgba(255,255,255,.20); background:linear-gradient(135deg,rgba(124,58,237,.88),rgba(6,182,212,.72)),linear-gradient(45deg,rgba(0,0,0,.4),transparent); box-shadow:var(--shadow); }
+    .hero::after { content:""; position:absolute; right:-74px; top:-94px; width:280px; height:280px; border-radius:50%; background:rgba(255,255,255,.16); }
+    .eyebrow { margin:0 0 7px; opacity:.9; font-size:14px; }
+    h1 { position:relative; margin:0; font-size:clamp(34px,8vw,66px); line-height:1.02; letter-spacing:-1.8px; }
+    .summary { position:relative; max-width:850px; margin:12px 0 0; font-size:17px; opacity:.95; }
+    .hero-meta { position:relative; display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; }
+    .pill { display:inline-flex; align-items:center; gap:5px; border-radius:999px; padding:6px 10px; font-size:12px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.20); }
+    .quick-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px; }
+    .quick-card { padding:13px; border-radius:18px; background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.20); }
+    .quick-card b { display:block; font-size:22px; } .quick-card span { font-size:12px; opacity:.85; }
+    @media (max-width:820px) { .quick-cards { grid-template-columns:repeat(2,1fr); } }
+    .section { margin-top:17px; } .section-title { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 2px 10px; color:#fff; } .section-title h2 { margin:0; font-size:22px; } .section-title span { color:rgba(255,255,255,.72); font-size:13px; }
+    .panel,.news-card,.compact-card,.source-card { background:var(--card); border:1px solid var(--line); border-radius:22px; box-shadow:0 12px 36px rgba(2,6,23,.20); overflow:hidden; backdrop-filter:blur(18px); }
+    .panel,.compact-card,.source-card { padding:16px; }
+    .log-table { width:100%; border-collapse:collapse; font-size:14px; } .log-table th,.log-table td { padding:10px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    .lead-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:14px; } .stack { display:grid; gap:14px; } .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; } .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; } .source-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    @media (max-width:900px) { .lead-grid,.grid-3,.grid-2,.source-grid { grid-template-columns:1fr; } }
+    .media { position:relative; background:linear-gradient(135deg,rgba(124,58,237,.4),rgba(6,182,212,.4)); }
+    .news-img { width:100%; height:180px; object-fit:cover; display:block; }
+    .lead-card .news-img { height:280px; }
+    .fallback { display:none; min-height:180px; place-items:center; padding:20px; color:#fff; text-align:center; background:linear-gradient(135deg,#4f46e5,#06b6d4); }
+    .media-failed .news-img { display:none; } .media-failed .fallback { display:grid; }
+    .img-source { position:absolute; left:10px; bottom:10px; z-index:2; max-width:calc(100% - 20px); padding:4px 8px; border-radius:999px; color:#fff; background:rgba(0,0,0,.48); backdrop-filter:blur(10px); font-size:12px; }
+    .body { padding:14px; } .news-card h3,.compact-card h3,.source-card h3 { margin:0 0 8px; font-size:18px; line-height:1.28; } .lead-card h3 { font-size:clamp(24px,5vw,36px); } p { margin:8px 0; }
+    .meta { display:flex; gap:7px; flex-wrap:wrap; align-items:center; margin-bottom:10px; } .badge { display:inline-flex; align-items:center; gap:5px; padding:4px 8px; border-radius:999px; font-size:12px; border:1px solid var(--line); } .grade-a { background:rgba(22,163,74,.12); color:var(--green); } .grade-b { background:rgba(202,138,4,.14); color:var(--yellow); } .grade-c { background:rgba(124,58,237,.12); color:var(--accent); } .category { background:rgba(6,182,212,.12); color:var(--cyan); } .rank { display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border-radius:9px; background:var(--accent); color:#fff; font-weight:800; margin-right:6px; } .source-link { color:var(--accent); font-size:13px; }
+    .points { padding-left:18px; margin:10px 0; } .points li { margin:5px 0; } details { margin-top:10px; border-top:1px solid var(--line); padding-top:10px; } summary { cursor:pointer; color:var(--accent); font-weight:700; }
+    .decision { display:grid; gap:8px; } .decision-row { display:grid; grid-template-columns:82px 1fr; gap:8px; font-size:14px; } .decision-row b { color:var(--muted); } .verdict { display:inline-flex; width:fit-content; padding:6px 10px; border-radius:999px; font-weight:800; background:rgba(22,163,74,.14); color:var(--green); }
+    .source-card b { font-size:24px; display:block; } .source-card span { color:var(--muted); font-size:13px; } .source-card strong { display:block; margin-top:6px; }
+    .action-list { display:grid; gap:10px; } .action { padding:13px; border-radius:18px; background:color-mix(in srgb,var(--card) 90%,rgba(124,58,237,.20)); border:1px solid var(--line); } .action strong { display:block; margin-bottom:4px; } footer { color:rgba(255,255,255,.74); font-size:13px; margin-top:20px; padding:0 4px; }
   </style>
 </head>
 <body>
   <main class="page">
-    <nav class="topbar" aria-label="快速跳转">
-      <a href="#top-stories">🔥 今日必看</a>
-      <a href="#do-now">🎁 今日可领</a>
-      <a href="#ai-tech">🤖 AI / 开发</a>
-      <a href="#games-community">🎮 游戏雷达</a>
-      <a href="#risk-policy">🛡 风险</a>
-      <a href="#ignore">🗑 可忽略</a>
-      <a href="#actions">✅ 行动</a>
-      <a href="#afternoon-update">🌇 下午增量</a>
-    </nav>
+    <nav class="topbar" aria-label="快速跳转"><a href="#top-stories">🔥 今日必看</a><a href="#do-now">🎁 今日可领</a><a href="#source-mix">🧭 来源组合</a><a href="#ai-tech">🤖 AI/开发</a><a href="#games-community">🎮 游戏雷达</a><a href="#risk-policy">🛡 风险</a><a href="#ignore">🗑 可忽略</a><a href="#actions">✅ 行动</a><a href="#afternoon-update">🌇 下午增量</a></nav>
+    <header class="hero"><p class="eyebrow">2026-06-25 · 今日网页 · index.html</p><h1>安安每日信息流</h1><p class="summary">锐评修正版：不用 Epic 动态首页截图，不让图只停留在 Logo；每张卡片显式显示来源等级；新增“来源组合”区块，避免一个站点喂出整页内容。</p><div class="hero-meta"><span class="pill">图片策略：具体文章/项目/商店页面截图优先</span><span class="pill">来源策略：官方 + 通讯社 + 垂直媒体 + 社区观察</span><span class="pill">游戏策略：必须给领取/购买决策</span></div><div class="quick-cards"><div class="quick-card"><b>3</b><span>今日主线</span></div><div class="quick-card"><b>7+</b><span>来源域名</span></div><div class="quick-card"><b>0</b><span>Epic 首页截图</span></div><div class="quick-card"><b>2</b><span>可忽略噪音</span></div></div></header>
 
-    <header class="hero">
-      <p class="eyebrow">2026-06-25 · 今日网页 · index.html</p>
-      <h1>安安每日信息流</h1>
-      <p class="summary">这版先改成“新闻站首页”：外面是摘要卡片，点开看详情；游戏区改成领取/购买决策；主图改用页面截图外链，不再只放品牌图标。</p>
-      <div class="hero-meta">
-        <span class="pill">信息流：首页摘要 + details 展开</span>
-        <span class="pill">单独页面：只给重大专题</span>
-        <span class="pill">图片：新闻页截图 / 商店页截图 / 项目页截图</span>
-      </div>
-      <div class="quick-cards">
-        <div class="quick-card"><b>3</b><span>今日主线</span></div>
-        <div class="quick-card"><b>3</b><span>可领/可做</span></div>
-        <div class="quick-card"><b>2</b><span>可忽略</span></div>
-        <div class="quick-card"><b>0</b><span>单独详情页</span></div>
-      </div>
-    </header>
+    <section id="update-log" class="section"><div class="section-title"><h2>更新记录</h2><span>自动化定位区</span></div><div class="panel"><table class="log-table"><thead><tr><th>时间</th><th>类型</th><th>状态</th></tr></thead><tbody><tr><td>08:30</td><td>主简报</td><td>已修正：避免动态首页截图、补全卡片来源、增加来源组合、保留游戏决策卡</td></tr><tr><td>15:30</td><td>下午增量</td><td>待更新，只补新增变化</td></tr><tr><td>01:00</td><td>自动归档</td><td>归档到 archive/2026/06/2026-06-25.html</td></tr></tbody></table></div></section>
 
-    <section id="update-log" class="section">
-      <div class="section-title"><h2>更新记录</h2><span>自动化定位区</span></div>
-      <div class="panel">
-        <table class="log-table">
-          <thead><tr><th>时间</th><th>类型</th><th>状态</th></tr></thead>
-          <tbody>
-            <tr><td>08:30</td><td>主简报</td><td>已改为新闻站信息流：首页摘要、详情展开、游戏决策卡、真实页面截图外链</td></tr>
-            <tr><td>15:30</td><td>下午增量</td><td>待更新，下午只补新增变化</td></tr>
-            <tr><td>01:00</td><td>自动归档</td><td>归档到 archive/2026/06/2026-06-25.html</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    <section id="overview" class="section"><div class="section-title"><h2>今日一句话总览</h2><span>先看这个</span></div><div class="panel"><p>今天的页面不是追求“看起来有很多块”，而是把注意力分给三类内容：高可信新闻主线、今天能直接领/做的东西、需要避开的自动化和游戏消费坑。来源不再集中在单一媒体，卡片也不再隐藏来源。</p></div></section>
 
-    <section id="overview" class="section">
-      <div class="section-title"><h2>今日一句话总览</h2><span>先看这个</span></div>
-      <div class="panel">
-        <p>今天最值得看的是三条主线：AI 编程工具从“好用”进入“成本与治理”；中国科技叙事继续向外解释“技术自立”；Steam/Epic 进入领取与消费决策节点。不要把所有新闻当同等重要，今天更需要做筛选。</p>
-      </div>
-    </section>
+    <section id="source-mix" class="section"><div class="section-title"><h2>今日来源组合</h2><span>防信息茧房</span></div><div class="source-grid"><div class="source-card"><b>A</b><span>通讯社 / 准一手</span><strong>Reuters、AP、TOP500</strong><p>负责事实主线，不负责情绪判断。</p></div><div class="source-card"><b>B</b><span>商业/行业媒体</span><strong>Business Insider、Axios、Times of India</strong><p>负责行业侧信号，但要标注“媒体报道”。</p></div><div class="source-card"><b>C</b><span>游戏/消费垂直源</span><strong>PC Gamer、SteamDB、GamesRadar、Tom's Hardware</strong><p>负责限免、折扣、游戏生态，不做重大事实唯一来源。</p></div><div class="source-card"><b>自</b><span>安安视角</span><strong>行动建议 / 可忽略内容</strong><p>必须明确是编辑判断，不能伪装成新闻事实。</p></div></div></section>
 
-    <section id="top-stories" class="section">
-      <div class="section-title"><h2>今日必看</h2><span>3 条主线，点开看详情</span></div>
-      <div class="lead-grid">
-        <article class="news-card lead-card">
-          <div class="media" onerror="this.classList.add('media-failed')">
-            <img class="news-img" src="https://image.thum.io/get/width/1200/crop/760/noanimate/https://github.com/features/copilot" alt="GitHub Copilot 页面截图" loading="lazy" onerror="this.closest('.media').classList.add('media-failed')">
-            <div class="fallback">GitHub Copilot 页面截图加载失败，可改为本地截图</div>
-          </div>
-          <div class="body">
-            <div class="meta"><span class="badge grade-b">B级：商业媒体报道</span><span class="badge category">AI Coding</span><a class="source-link" href="https://www.businessinsider.com/github-best-month-ever-internal-meeting-2026-6" target="_blank" rel="noopener">Business Insider</a></div>
-            <h3><span class="rank">1</span>GitHub AI 编程用量冲高，Copilot 进入“成本化”阶段</h3>
-            <p>GitHub AI 编程需求继续升温，Copilot 相关使用模式更强调用量。AI Coding 不是“免费生产力”了，后面越来越像云服务，要看账单、返工率、稳定性和安全边界。</p>
-            <ul class="points"><li><strong>为什么重要：</strong>这会影响 Codex/Vibe 工作流是否真的省钱。</li><li><strong>安安怎么用：</strong>记录任务、耗时、返工、是否合并。</li><li><strong>下一步：</strong>先做 3 天 AI 工作日志。</li></ul>
-            <details><summary>展开详情</summary><p>不要只比较模型“聪不聪明”。真正能落地的 AI 编程服务，要有上下文管理、权限控制、日志、回滚、验收标准和成本统计。这也是后续可做成副业服务的地方：不是卖提示词，而是帮别人搭建稳定工作流。</p></details>
-          </div>
-        </article>
+    <section id="top-stories" class="section"><div class="section-title"><h2>今日必看</h2><span>3 条主线，点开看详情</span></div><div class="lead-grid"><article class="news-card lead-card"><div class="media"><img class="news-img" src="https://image.thum.io/get/width/1200/crop/760/noanimate/https://github.com/features/copilot" alt="GitHub Copilot 页面截图" loading="lazy" onerror="this.closest('.media').classList.add('media-failed')"><div class="fallback">GitHub Copilot 页面截图加载失败，可改为本地截图</div><span class="img-source">图：GitHub Copilot 页面截图</span></div><div class="body"><div class="meta"><span class="badge grade-b">B级：商业媒体报道</span><span class="badge category">AI Coding</span><a class="source-link" href="https://www.businessinsider.com/github-best-month-ever-internal-meeting-2026-6" target="_blank" rel="noopener">Business Insider</a><a class="source-link" href="https://github.com/features/copilot" target="_blank" rel="noopener">GitHub Copilot</a></div><h3><span class="rank">1</span>GitHub AI 编程用量冲高，Copilot 进入“成本化”阶段</h3><p>AI Coding 的重点正在从“能不能写”变成“值不值、稳不稳、能不能审计”。</p><ul class="points"><li><strong>为什么重要：</strong>会影响 Codex/Vibe 工作流的真实成本。</li><li><strong>安安怎么用：</strong>记录任务、耗时、返工、是否合并。</li><li><strong>下一步：</strong>先做 3 天 AI 工作日志。</li></ul><details><summary>展开详情</summary><p>不要只比较模型聪不聪明。真正能落地的 AI 编程服务，要有上下文管理、权限控制、日志、回滚、验收标准和成本统计。这也是以后可产品化的地方。</p></details></div></article><div class="stack"><article class="news-card"><div class="media"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://www.reuters.com/world/asia-pacific/singling-out-huawei-chinas-premier-defends-tech-rise-rejects-subsidy-claims-2026-06-24/" alt="Reuters 中国科技报道页面截图" loading="lazy" onerror="this.closest('.media').classList.add('media-failed')"><div class="fallback">Reuters 页面截图加载失败，可改用本地新闻截图</div><span class="img-source">图：Reuters 文章页截图</span></div><div class="body"><div class="meta"><span class="badge grade-a">A级：Reuters / AP</span><span class="badge category">中国科技</span><a class="source-link" href="https://www.reuters.com/world/asia-pacific/singling-out-huawei-chinas-premier-defends-tech-rise-rejects-subsidy-claims-2026-06-24/" target="_blank" rel="noopener">Reuters</a><a class="source-link" href="https://apnews.com/article/497753eb03fbe61ccd192782d72d59be" target="_blank" rel="noopener">AP</a></div><h3><span class="rank">2</span>中国在大连达沃斯为科技崛起辩护</h3><p>这条对你有用的不是外交辞令，而是“国产化、私有化部署、自主可控”这条长期企业需求线。</p><details><summary>展开详情</summary><p>AI、半导体、量子计算、电动车这些方向会继续出现在政策和企业采购叙事中。你做知识库、内网工具、自建服务和企业自动化时，可以把“数据不出内网、可审计、低成本替代”当作长期卖点。</p></details></div></article><article class="news-card"><div class="media"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://www.top500.org/" alt="TOP500 网站截图" loading="lazy" onerror="this.closest('.media').classList.add('media-failed')"><div class="fallback">TOP500 页面截图加载失败</div><span class="img-source">图：TOP500 网站截图</span></div><div class="body"><div class="meta"><span class="badge grade-a">A级：TOP500 / 媒体报道</span><span class="badge category">HPC</span><a class="source-link" href="https://www.top500.org/" target="_blank" rel="noopener">TOP500</a><a class="source-link" href="https://www.theguardian.com/technology/2026/jun/24/china-supercomputer-world-fastest-top500-ranking-lineshine" target="_blank" rel="noopener">Guardian</a></div><h3><span class="rank">3</span>LineShine 登顶 TOP500，但别误读成 AI 训练第一</h3><p>HPC、AI 集群、云 GPU 是三套指标。看到榜单新闻，先问它到底测的是什么。</p><details><summary>展开详情</summary><p>这类新闻很容易被标题党写成“中国 AI 算力第一”。更准确的写法是：传统 HPC 榜单领先，但 AI 训练生态还要看 GPU、框架、网络、软件栈和可获得性。</p></details></div></article></div></div></section>
 
-        <div class="stack">
-          <article class="news-card">
-            <img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://www.reuters.com/world/asia-pacific/singling-out-huawei-chinas-premier-defends-tech-rise-rejects-subsidy-claims-2026-06-24/" alt="Reuters 中国科技报道页面截图" loading="lazy" onerror="this.closest('.news-card').querySelector('.fallback')?.removeAttribute('hidden')">
-            <div class="fallback" hidden>Reuters 页面截图加载失败，可改用本地新闻截图</div>
-            <div class="body"><div class="meta"><span class="badge grade-a">A级：Reuters / AP</span><span class="badge category">中国科技</span></div><h3><span class="rank">2</span>中国在大连达沃斯为科技崛起辩护</h3><p>李强谈到 AI、电动车、量子计算、半导体等方向，强调技术进步来自创新和企业投入。</p><details><summary>展开详情</summary><p>这条不要只看外交表态。对安安更重要的是长期需求线：国产化、私有化部署、自主可控、企业内部 AI 工具落地，这些都可能变成服务机会。</p></details></div>
-          </article>
-          <article class="news-card">
-            <img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://www.top500.org/" alt="TOP500 网站截图" loading="lazy">
-            <div class="body"><div class="meta"><span class="badge grade-a">A级：Reuters / TOP500</span><span class="badge category">HPC</span></div><h3><span class="rank">3</span>LineShine 登顶 TOP500，但别误读成 AI 训练第一</h3><p>TOP500 更偏传统科学计算，不等于 AI 大模型训练能力。HPC、AI 集群和云 GPU 是三套指标。</p><details><summary>展开详情</summary><p>这类新闻很容易被标题党写成“中国 AI 算力第一”。更准确的写法是：传统 HPC 榜单领先，但 AI 训练生态还要看 GPU、框架、数据中心网络、软件栈和可获得性。</p></details></div>
-          </article>
-        </div>
-      </div>
-    </section>
+    <section id="do-now" class="section"><div class="section-title"><h2>今日可领 / 可做</h2><span>游戏区先解决“值不值得”</span></div><div class="grid-3"><article class="news-card"><div class="media"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://www.pcgamer.com/epic-games-store-free-games-list/" alt="PC Gamer Epic 免费游戏清单截图" loading="lazy" onerror="this.closest('.media').classList.add('media-failed')"><div class="fallback">Epic 免费游戏清单截图加载失败</div><span class="img-source">图：PC Gamer 限免清单截图，避免 Epic 动态首页</span></div><div class="body"><div class="meta"><span class="badge grade-c">C级：游戏信息源</span><span class="badge category">限免决策</span><a class="source-link" href="https://www.pcgamer.com/epic-games-store-free-games-list/" target="_blank" rel="noopener">PC Gamer</a></div><h3>Epic 免费游戏：不要截首页，直接看清单</h3><div class="decision"><div class="decision-row"><b>游戏</b><span>RollerCoaster Tycoon 3 / Voidwrought</span></div><div class="decision-row"><b>类型</b><span>模拟经营 / 类银河恶魔城动作平台</span></div><div class="decision-row"><b>建议</b><span class="verdict">必领入库</span></div><div class="decision-row"><b>理由</b><span>免费入库成本为 0；RCT3 有经典经营价值，Voidwrought 适合喜欢探索动作的人。</span></div></div><details><summary>展开详情</summary><p>以后 Epic 不再截 store 首页或 free-games 动态页，优先截 PC Gamer/官方商品页/具体游戏页。首页经常焦点不在当前限免上，容易截图看不到内容。</p></details></div></article><article class="news-card"><div class="media"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://steamdb.info/sales/" alt="SteamDB 折扣页面截图" loading="lazy" onerror="this.closest('.media').classList.add('media-failed')"><div class="fallback">SteamDB 折扣页截图加载失败</div><span class="img-source">图：SteamDB 折扣页截图，比 Steam 首页更可读</span></div><div class="body"><div class="meta"><span class="badge grade-c">C级：游戏数据源</span><span class="badge category">夏促</span><a class="source-link" href="https://steamdb.info/sales/" target="_blank" rel="noopener">SteamDB</a><a class="source-link" href="https://www.pcgamer.com/steam-sale-dates/" target="_blank" rel="noopener">PC Gamer</a></div><h3>Steam 夏促：用 SteamDB 看折扣，不要只看首页</h3><div class="decision"><div class="decision-row"><b>窗口</b><span>6 月 25 日至 7 月 9 日</span></div><div class="decision-row"><b>优先级</b><span>愿望单、DLC、捆绑包、史低工具</span></div><div class="decision-row"><b>建议</b><span class="verdict">先筛不急买</span></div><div class="decision-row"><b>理由</b><span>首页营销味太重，SteamDB 更适合查史低和折扣深度。</span></div></div></div></article><article class="news-card"><div class="media"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://github.com/features/actions" alt="GitHub Actions 页面截图" loading="lazy" onerror="this.closest('.media').classList.add('media-failed')"><div class="fallback">GitHub Actions 页面截图加载失败</div><span class="img-source">图：GitHub Actions 页面截图</span></div><div class="body"><div class="meta"><span class="badge grade-c">C级：安安可执行判断</span><span class="badge category">自动化</span><a class="source-link" href="https://github.com/features/actions" target="_blank" rel="noopener">GitHub Actions</a></div><h3>把日报仓库变成自动化展示案例</h3><p>HTML 首页、归档脚本、定时任务、来源等级、图文卡片，这套流程本身可以整理成“ChatGPT + GitHub Pages 自动信息流”的作品集。</p></div></article></div></section>
 
-    <section id="do-now" class="section">
-      <div class="section-title"><h2>今日可领 / 可做</h2><span>游戏区先解决“值不值得”</span></div>
-      <div class="grid-3">
-        <article class="news-card">
-          <img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://store.epicgames.com/en-US/free-games" alt="Epic 免费游戏页面截图" loading="lazy">
-          <div class="body"><div class="meta"><span class="badge grade-c">游戏信息源</span><span class="badge category">限免</span><a class="source-link" href="https://www.pcgamer.com/epic-games-store-free-games-list/" target="_blank" rel="noopener">PC Gamer</a></div><h3>Epic 免费游戏：先领，再判断玩不玩</h3><div class="decision"><div class="decision-row"><b>游戏</b><span>RollerCoaster Tycoon 3 / Voidwrought</span></div><div class="decision-row"><b>类型</b><span>模拟经营 / 类银河恶魔城动作平台</span></div><div class="decision-row"><b>建议</b><span class="verdict">必领入库</span></div><div class="decision-row"><b>理由</b><span>免费入库成本为 0；RCT3 有经典经营价值，Voidwrought 适合喜欢空洞骑士类探索的人。</span></div></div><details><summary>展开详情</summary><p>以后 Epic 卡片都要写清楚：游戏名、类型、截止时间、中文支持、评价、适合谁、安安建议。不能只写“本周限免”。</p></details></div>
-        </article>
-        <article class="news-card">
-          <img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://store.steampowered.com/" alt="Steam 商店页面截图" loading="lazy">
-          <div class="body"><div class="meta"><span class="badge grade-c">游戏信息源</span><span class="badge category">夏促</span><a class="source-link" href="https://www.pcgamer.com/steam-sale-dates/" target="_blank" rel="noopener">PC Gamer</a></div><h3>Steam 夏促：先看愿望单，别乱刷首页</h3><div class="decision"><div class="decision-row"><b>时间</b><span>6 月 25 日至 7 月 9 日</span></div><div class="decision-row"><b>优先级</b><span>愿望单、DLC、捆绑包、史低工具</span></div><div class="decision-row"><b>建议</b><span class="verdict">先筛不急买</span></div><div class="decision-row"><b>理由</b><span>第一天最容易冲动消费，先标记再决定。</span></div></div></div>
-        </article>
-        <article class="news-card">
-          <img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://github.com/features/actions" alt="GitHub Actions 页面截图" loading="lazy">
-          <div class="body"><div class="meta"><span class="badge grade-c">安安可执行判断</span><span class="badge category">自动化</span></div><h3>把日报仓库变成自动化展示案例</h3><p>HTML 首页、归档脚本、定时任务、来源等级、图文卡片，这套流程本身就能整理成“ChatGPT + GitHub Pages 自动信息流”的案例。</p><details><summary>展开详情</summary><p>它不是只服务你看新闻，也能变成副业作品集：帮小团队做自动日报、竞品监控、游戏限免页、项目周报页。</p></details></div>
-        </article>
-      </div>
-    </section>
+    <section id="ai-tech" class="section"><div class="section-title"><h2>AI / 开发趋势</h2><span>只保留和安安强相关</span></div><div class="grid-3"><article class="news-card"><div class="media"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://workspace.google.com/" alt="Google Workspace 页面截图" loading="lazy"><span class="img-source">图：Google Workspace 页面截图</span></div><div class="body"><div class="meta"><span class="badge grade-b">B级：媒体报道</span><span class="badge category">Agent</span><a class="source-link" href="https://workspace.google.com/" target="_blank" rel="noopener">Google Workspace</a></div><h3>Workspace CLI 争议：Agent 办公工具会撞上组织边界</h3><p>真正值得看的是“个人效率工具”和“公司产品/权限边界”的冲突。</p><details><summary>展开详情</summary><p>公司内部工具如果接近产品线，或者碰到权限、数据、合规，个人创新就会变复杂。以后做工具型副业，边界要写清楚。</p></details></div></article><article class="news-card"><div class="media"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://deepmind.google/" alt="Google DeepMind 页面截图" loading="lazy"><span class="img-source">图：Google DeepMind 页面截图</span></div><div class="body"><div class="meta"><span class="badge grade-b">B级：行业报道</span><span class="badge category">Agent 安全</span><a class="source-link" href="https://www.axios.com/2026/06/18/google-deepmind-prepares-for-rogue-ai-agents" target="_blank" rel="noopener">Axios</a></div><h3>Agent 越能自动执行，越需要审计和回滚</h3><p>日报自动化也不能盲目全自动。GitHub 写入、归档、改首页，都要能回滚。</p></div></article><article class="news-card"><div class="media"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://www.docker.com/" alt="Docker 页面截图" loading="lazy"><span class="img-source">图：Docker 页面截图</span></div><div class="body"><div class="meta"><span class="badge grade-c">C级：方法参考</span><span class="badge category">DevOps</span><a class="source-link" href="https://www.docker.com/" target="_blank" rel="noopener">Docker</a></div><h3>AI Coding 副业机会不在“卖提示词”，而在交付流程</h3><p>能交付环境排障、仓库规范、任务拆分、自动化验收、部署记录和回滚方案，比卖提示词靠谱。</p></div></article></div></section>
 
-    <section id="ai-tech" class="section">
-      <div class="section-title"><h2>AI / 开发趋势</h2><span>保留和安安强相关的内容</span></div>
-      <div class="grid-3">
-        <article class="news-card"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://workspace.google.com/" alt="Google Workspace 页面截图" loading="lazy"><div class="body"><div class="meta"><span class="badge grade-b">B级：媒体报道</span><span class="badge category">Agent</span></div><h3>Workspace CLI 争议：Agent 办公工具会撞上组织边界</h3><p>真正值得看的是“个人效率工具”和“公司产品/权限边界”的冲突。</p><details><summary>展开详情</summary><p>公司内部工具如果太接近产品线，或者碰到权限、数据、合规，个人创新就会变复杂。以后做工具型副业，边界要写清楚。</p></details></div></article>
-        <article class="news-card"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://deepmind.google/" alt="Google DeepMind 页面截图" loading="lazy"><div class="body"><div class="meta"><span class="badge grade-b">B级：行业报道</span><span class="badge category">Agent 安全</span></div><h3>Agent 越能自动执行，越需要审计和回滚</h3><p>自动化越顺手，越要有日志、权限隔离和失败兜底。</p><details><summary>展开详情</summary><p>日报自动化也不能盲目全自动。GitHub 写入、归档、改首页，都要能回滚。</p></details></div></article>
-        <article class="news-card"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://www.docker.com/" alt="Docker 页面截图" loading="lazy"><div class="body"><div class="meta"><span class="badge grade-c">C级：方法参考</span><span class="badge category">DevOps</span></div><h3>AI Coding 副业机会不在“卖提示词”，而在交付流程</h3><p>能交付环境排障、仓库规范、任务拆分、自动化验收、部署记录和回滚方案，比卖提示词靠谱。</p></div></article>
-      </div>
-    </section>
+    <section id="games-community" class="section"><div class="section-title"><h2>游戏与社区雷达</h2><span>不堆小新闻，只留决策价值</span></div><div class="grid-2"><article class="news-card"><div class="media"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://www.steamdeck.com/en/" alt="Steam Deck / SteamOS 页面截图" loading="lazy"><span class="img-source">图：Steam Deck / SteamOS 页面截图</span></div><div class="body"><div class="meta"><span class="badge grade-c">C级：游戏平台观察</span><span class="badge category">SteamOS</span><a class="source-link" href="https://www.steamdeck.com/en/" target="_blank" rel="noopener">Steam Deck</a></div><h3>Steam Machine / SteamOS：更值得看硬件生态</h3><p>它对你的价值在于能关联 SteamOS、客厅 PC、家庭服务器、游戏串流和自建游戏环境。</p></div></article><article class="news-card"><div class="media"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://store.epicgames.com/en-US/news" alt="Epic Games Store 新闻页面截图" loading="lazy"><span class="img-source">图：Epic 新闻页截图，避免首页焦点漂移</span></div><div class="body"><div class="meta"><span class="badge grade-c">C级：游戏平台观察</span><span class="badge category">Epic</span><a class="source-link" href="https://www.tomshardware.com/video-games/pc-gaming/epic-games-unveils-launcher-v2-in-re-attempt-to-topple-steam-says-redesigned-storefront-is-up-to-6-5x-faster-promises-player-profiles-user-reviews-universal-controller-support-and-much-more" target="_blank" rel="noopener">Tom's Hardware</a></div><h3>Epic Launcher V2：别看宣传，关注它能否补社区短板</h3><p>玩家资料、用户评价、通用手柄和社交能力，比“启动器变快”更有长期意义。</p></div></article></div></section>
 
-    <section id="games-community" class="section">
-      <div class="section-title"><h2>游戏与社区雷达</h2><span>不堆小新闻，只留决策价值</span></div>
-      <div class="grid-2">
-        <article class="news-card"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://store.steampowered.com/steamdeck" alt="Steam Deck / SteamOS 页面截图" loading="lazy"><div class="body"><div class="meta"><span class="badge grade-c">游戏平台观察</span><span class="badge category">SteamOS</span></div><h3>Steam Machine / SteamOS：更值得看硬件生态，不是只看新品</h3><p>这类新闻对你有价值，是因为能关联 SteamOS、客厅 PC、家庭服务器、游戏串流和自建游戏环境。</p></div></article>
-        <article class="news-card"><img class="news-img" src="https://image.thum.io/get/width/900/crop/520/noanimate/https://store.epicgames.com/" alt="Epic Games Store 页面截图" loading="lazy"><div class="body"><div class="meta"><span class="badge grade-c">游戏平台观察</span><span class="badge category">Epic</span></div><h3>Epic Launcher V2：它想补 Steam 的社区短板</h3><p>Epic 重做启动器，重点不是漂亮一点，而是补玩家资料、评价、手柄和社交能力。</p></div></article>
-      </div>
-    </section>
+    <section id="risk-policy" class="section"><div class="section-title"><h2>风险提醒</h2><span>今天要避开的坑</span></div><div class="grid-2"><article class="compact-card"><div class="meta"><span class="badge grade-c">C级：研究参考</span><a class="source-link" href="https://arxiv.org/abs/2604.08352" target="_blank" rel="noopener">arXiv</a></div><h3>AI 写代码不是免审</h3><p>涉及密钥、服务器、数据库、NAS 权限的改动必须人工看。自动化越顺手，越要有日志、回滚和权限隔离。</p></article><article class="compact-card"><div class="meta"><span class="badge grade-c">C级：本站维护提醒</span></div><h3>截图服务和外链图片都可能失效</h3><p>今天先用外链截图看效果；长期方案应把关键图保存到 <code>assets/YYYY-MM-DD/</code>，归档页才稳定。</p></article></div></section>
 
-    <section id="risk-policy" class="section">
-      <div class="section-title"><h2>风险提醒</h2><span>今天要避开的坑</span></div>
-      <div class="grid-2">
-        <article class="compact-card"><h3>AI 写代码不是免审</h3><p>涉及密钥、服务器、数据库、NAS 权限的改动必须人工看。自动化越顺手，越要有日志、回滚和权限隔离。</p><div class="meta"><span class="badge grade-c">研究参考</span><a class="source-link" href="https://arxiv.org/abs/2604.08352" target="_blank" rel="noopener">arXiv</a></div></article>
-        <article class="compact-card"><h3>图像热链会失效</h3><p>现在用了外站截图 URL，适合测试视觉效果；长期方案应该把关键图保存到 <code>assets/YYYY-MM-DD/</code>，归档页才稳定。</p><div class="meta"><span class="badge grade-c">本站维护提醒</span></div></article>
-      </div>
-    </section>
+    <section id="ignore" class="section"><div class="section-title"><h2>今天可忽略</h2><span>过滤噪音</span></div><div class="grid-2"><article class="compact-card"><div class="meta"><span class="badge grade-c">C级：编辑判断</span></div><h3>普通游戏小更新</h3><p>如果不和 CS2/7DTD、自建服、限免折扣、SteamOS 相关，先不看。</p></article><article class="compact-card"><div class="meta"><span class="badge grade-c">C级：编辑判断</span></div><h3>纯 AI 宣传口号</h3><p>没有具体产品、价格、开源地址、案例、限制条件的 AI 新闻，不进主卡。</p></article></div></section>
 
-    <section id="ignore" class="section">
-      <div class="section-title"><h2>今天可忽略</h2><span>过滤噪音</span></div>
-      <div class="grid-2">
-        <article class="compact-card"><h3>普通游戏小更新</h3><p>比如某个大逃杀/运营游戏加一个皮肤、小活动，不和你当前的 CS2/7DTD、自建服、限免折扣相关时，先不看。</p></article>
-        <article class="compact-card"><h3>纯 AI 宣传口号</h3><p>没有具体产品、价格、开源地址、案例、限制条件的 AI 新闻，不进主卡，最多进短讯。</p></article>
-      </div>
-    </section>
+    <section id="actions" class="section"><div class="section-title"><h2>今日行动建议</h2><span>只保留能做的</span></div><div class="panel action-list"><div class="action"><strong>1. 先领 Epic，再看 SteamDB</strong>Epic 看清单，不看动态首页；Steam 看 SteamDB，不被首页营销带跑。</div><div class="action"><strong>2. 给 Codex 工作流记一条成本日志</strong>任务、耗时、返工量、是否合并，先手动记录 3 天。</div><div class="action"><strong>3. 把关键截图缓存到 assets</strong>外链截图只适合测试，正式归档要把关键图存本地。</div></div></section>
 
-    <section id="actions" class="section">
-      <div class="section-title"><h2>今日行动建议</h2><span>只保留能做的</span></div>
-      <div class="panel action-list">
-        <div class="action"><strong>1. 先领 Epic，再看 Steam 愿望单</strong>不要被夏促首页带着乱买，先处理确定收益。</div>
-        <div class="action"><strong>2. 给 Codex 工作流记一条成本日志</strong>任务、耗时、返工量、是否合并，先手动记录 3 天。</div>
-        <div class="action"><strong>3. 后续把关键图缓存到 assets</strong>今天先用外链截图看效果，稳定后把新闻图和商店图存成本地资源。</div>
-      </div>
-    </section>
-
-    <section id="afternoon-update" class="section">
-      <div class="section-title"><h2>15:30 下午增量更新</h2><span>等待自动补充</span></div>
-      <div class="panel"><p>待更新。下午只补增量，不重复上午内容。</p></div>
-    </section>
-
-    <section id="media-assets" class="section">
-      <div class="section-title"><h2>图片与素材策略</h2><span>从外链图过渡到本地缓存</span></div>
-      <div class="panel"><p>本版使用新闻页、商店页、项目页的外站截图 URL，解决“只有图标”的问题。长期稳定方案是每天把关键图保存到 <code>assets/YYYY-MM-DD/</code>，归档时一起保留。</p></div>
-    </section>
-
+    <section id="afternoon-update" class="section"><div class="section-title"><h2>15:30 下午增量更新</h2><span>等待自动补充</span></div><div class="panel"><p>待更新。下午只补增量，不重复上午内容。</p></div></section>
+    <section id="media-assets" class="section"><div class="section-title"><h2>图片与素材策略</h2><span>从外链图过渡到本地缓存</span></div><div class="panel"><p>不再使用 Epic 动态首页截图。优先具体文章页、商店清单页、SteamDB、项目官网截图。长期方案是每天把关键图保存到 <code>assets/YYYY-MM-DD/</code>，归档时一起保留。</p></div></section>
     <footer><p>归档规则：每天凌晨 1:00 将本页归档为 <code>archive/2026/06/2026-06-25.html</code>，然后重置为新的今日页。</p></footer>
   </main>
 </body>
