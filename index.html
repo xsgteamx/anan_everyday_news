@@ -17,6 +17,7 @@
       --accent-soft: #dbeafe;
       --danger-soft: #fee2e2;
       --ok-soft: #dcfce7;
+      --warn-soft: #fef3c7;
     }
     @media (prefers-color-scheme: dark) {
       :root {
@@ -29,6 +30,7 @@
         --accent-soft: #172554;
         --danger-soft: #450a0a;
         --ok-soft: #052e16;
+        --warn-soft: #422006;
       }
     }
     * { box-sizing: border-box; }
@@ -79,6 +81,7 @@
       box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04);
     }
     section.card h2 { margin: 0 0 10px; font-size: 22px; }
+    section.card > p { margin-top: 0; }
     .placeholder { color: var(--muted); }
     .log-table { width: 100%; border-collapse: collapse; font-size: 14px; }
     .log-table th, .log-table td { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
@@ -86,6 +89,11 @@
     .tag { font-size: 12px; padding: 3px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--text); }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
     .mini-card { border: 1px solid var(--line); border-radius: 14px; padding: 12px; background: color-mix(in srgb, var(--card) 94%, var(--accent-soft)); }
+    .mini-card h3 { margin: 0 0 8px; font-size: 18px; }
+    .mini-card p { margin: 6px 0; }
+    .source { display: inline-block; margin-top: 8px; font-size: 13px; color: var(--muted); }
+    .note { padding: 10px 12px; border-radius: 14px; background: var(--warn-soft); border: 1px solid var(--line); }
+    .ok { padding: 10px 12px; border-radius: 14px; background: var(--ok-soft); border: 1px solid var(--line); }
     figure { margin: 12px 0 0; }
     figure img { width: 100%; border-radius: 14px; border: 1px solid var(--line); }
     figcaption { color: var(--muted); font-size: 13px; margin-top: 6px; }
@@ -97,7 +105,7 @@
     <header class="hero">
       <p class="eyebrow">今日网页 · 2026-06-25 · index.html</p>
       <h1>安安每日信息流</h1>
-      <p class="summary">今天的新闻、AI、免费资源、游戏社区、开发运维和风险提醒会集中更新在这个页面里。</p>
+      <p class="summary">今天的主线：AI 编程工具正在从“好玩”进入“成本、稳定性、治理”的阶段；中国科技叙事继续升温；游戏侧今天重点看 Steam 夏促和 Epic 限免。</p>
       <nav class="quick-nav" aria-label="快速跳转">
         <a href="#top-stories">重点</a>
         <a href="#ai-tech">AI 科技</a>
@@ -106,6 +114,13 @@
         <a href="#devops">开发运维</a>
         <a href="#afternoon-update">下午增量</a>
       </nav>
+      <div class="tag-row">
+        <span class="tag">AI Coding</span>
+        <span class="tag">Steam 夏促</span>
+        <span class="tag">Epic 限免</span>
+        <span class="tag">中国科技</span>
+        <span class="tag">安全治理</span>
+      </div>
     </header>
 
     <section id="update-log" class="card">
@@ -113,51 +128,209 @@
       <table class="log-table">
         <thead><tr><th>时间</th><th>类型</th><th>状态</th></tr></thead>
         <tbody>
-          <tr><td>08:30</td><td>主简报</td><td>待更新</td></tr>
-          <tr><td>15:30</td><td>下午增量</td><td>待更新</td></tr>
-          <tr><td>01:00</td><td>自动归档</td><td>归档到 archive/YYYY/MM/YYYY-MM-DD.html</td></tr>
+          <tr><td>08:30</td><td>主简报</td><td>已测试写入：覆盖重点新闻、AI、免费资源、游戏、开发运维、风险提醒与行动建议</td></tr>
+          <tr><td>15:30</td><td>下午增量</td><td>待更新，下午只补新增变化</td></tr>
+          <tr><td>01:00</td><td>自动归档</td><td>归档到 archive/2026/06/2026-06-25.html</td></tr>
         </tbody>
       </table>
     </section>
 
     <section id="overview" class="card">
       <h2>今日一句话总览</h2>
-      <p class="placeholder">待 08:30 主简报更新。</p>
+      <p>今天最值得盯的是三件事：AI 编程工具的用量和收费模式正在快速变化；中国在 AI、半导体、超算等叙事上继续向外释放“技术自立”信号；游戏平台侧进入夏促和限免节点，适合顺手领、顺手建愿望单，也适合观察“信息差内容”的素材。</p>
     </section>
 
     <section id="top-stories" class="card">
       <h2>今日最值得看的事</h2>
-      <p class="placeholder">待更新。</p>
+      <div class="grid">
+        <article class="mini-card">
+          <h3>中国在达沃斯释放“技术不是威胁”的叙事</h3>
+          <p><strong>是什么：</strong>李强在大连世界经济论坛相关活动上谈到 AI、电动车、量子计算、半导体等领域，强调中国技术进步主要来自创新和企业投入，而不是外界指责的补贴。</p>
+          <p><strong>为什么值得看：</strong>这不是单条新闻，而是中美欧科技竞争、出口管制和产业链叙事的继续升级。</p>
+          <p><strong>安安能怎么用：</strong>做 AI/开发/运维副业时，可以关注“国产替代、自主可控、企业私有化部署”这条长期需求线。</p>
+          <a class="source" href="https://www.reuters.com/world/asia-pacific/singling-out-huawei-chinas-premier-defends-tech-rise-rejects-subsidy-claims-2026-06-24/" target="_blank" rel="noopener">来源：Reuters</a>
+          <span class="source"> · </span>
+          <a class="source" href="https://apnews.com/article/497753eb03fbe61ccd192782d72d59be" target="_blank" rel="noopener">AP</a>
+        </article>
+
+        <article class="mini-card">
+          <h3>LineShine 登顶 TOP500：超算很强，但不等于 AI 训练最强</h3>
+          <p><strong>是什么：</strong>中国 LineShine 超算在 TOP500 榜单上超过美国 El Capitan，系统使用国产设计芯片，被视为中国在高性能计算上的展示。</p>
+          <p><strong>为什么值得看：</strong>Reuters 同时提醒：TOP500 更偏传统科学计算，不完全代表今天 AI 大模型训练能力。</p>
+          <p><strong>安安能怎么用：</strong>看这类新闻不要只转标题，要加一句判断：HPC 榜单、AI 集群、云上 GPU 是三套不同指标。</p>
+          <a class="source" href="https://www.reuters.com/world/china/china-beats-us-with-worlds-fastest-supercomputer-race-not-geared-ai-work-2026-06-23/" target="_blank" rel="noopener">来源：Reuters</a>
+        </article>
+
+        <article class="mini-card">
+          <h3>GitHub AI 编程用量冲高：Copilot 进入“算账时代”</h3>
+          <p><strong>是什么：</strong>Business Insider 报道称，GitHub 由于 AI 辅助编程需求上升，6 月迎来内部称为“最好月份”的表现；同时 Copilot 转向更偏用量计费的模式。</p>
+          <p><strong>为什么值得看：</strong>AI Coding 不是“免费生产力”了，后面会越来越像云服务：要看用量、账单、稳定性和回报。</p>
+          <p><strong>安安能怎么用：</strong>你自己的 Codex/Vibe 工作流也应该开始记录：一次任务花多少 token、节省多少人工时间、失败率是多少。</p>
+          <a class="source" href="https://www.businessinsider.com/github-best-month-ever-internal-meeting-2026-6" target="_blank" rel="noopener">来源：Business Insider</a>
+        </article>
+
+        <article class="mini-card">
+          <h3>今天游戏侧重点：Steam 夏促 + Epic 换免</h3>
+          <p><strong>是什么：</strong>Steam 夏促节点在 6 月 25 日至 7 月 9 日；Epic 免费游戏也在 6 月 25 日切换到新一轮。</p>
+          <p><strong>为什么值得看：</strong>这是适合“顺手领 + 顺手写内容”的节点，不只是玩家福利，也适合做信息流素材。</p>
+          <p><strong>安安能怎么用：</strong>今晚可以只做三件事：领 Epic、看 Steam 愿望单、挑 1-2 个适合朋友分享的好价。</p>
+          <a class="source" href="https://www.pcgamer.com/epic-games-store-free-games-list/" target="_blank" rel="noopener">来源：PC Gamer - Epic</a>
+          <span class="source"> · </span>
+          <a class="source" href="https://www.pcgamer.com/steam-sale-dates/" target="_blank" rel="noopener">PC Gamer - Steam Sale</a>
+        </article>
+      </div>
     </section>
 
     <section id="ai-tech" class="card">
       <h2>AI / 科技 / 互联网</h2>
-      <p class="placeholder">待更新。</p>
+      <div class="grid">
+        <article class="mini-card">
+          <h3>AI Coding 从“提示词技巧”变成“系统工程”</h3>
+          <p>GitHub Copilot、Codex、Claude Code、Cursor 的竞争点已经不只是模型聪不聪明，而是计费、稳定性、上下文管理、工具调用、权限边界和团队治理。</p>
+          <p><strong>判断：</strong>后面谁能把“成本可控 + 可审计 + 可回滚”做好，谁才适合企业长期用。</p>
+          <a class="source" href="https://www.businessinsider.com/github-best-month-ever-internal-meeting-2026-6" target="_blank" rel="noopener">来源：Business Insider</a>
+        </article>
+
+        <article class="mini-card">
+          <h3>Google Workspace CLI 争议：企业内部创新和 Agent 边界冲突</h3>
+          <p>有报道称，Google 前工程师 Justin Poehnelt 因一个走红的 Workspace CLI AI 工具相关事件被解雇；他本人把焦点指向“企业如何看待 Agent 进入办公工作流”。</p>
+          <p><strong>判断：</strong>这类事件适合观察：当个人工具做得太像产品，和大公司产品线撞车时，冲突会越来越常见。</p>
+          <a class="source" href="https://timesofindia.indiatimes.com/technology/tech-news/google-engineer-reportedly-sacked-over-viral-workspace-cli-ai-tool-says-the-fear-wasnt-my-tool-it-was-agents-as-/articleshow/131969292.cms" target="_blank" rel="noopener">来源：Times of India</a>
+        </article>
+
+        <article class="mini-card">
+          <h3>Gemini 3.5 Pro 延后：长任务 Agent 仍然难做</h3>
+          <p>Business Insider 报道称，Google 将 Gemini 3.5 Pro 的推出从 6 月推迟到 7 月，以继续收集测试反馈，重点涉及长周期任务和 Agent 能力。</p>
+          <p><strong>安安视角：</strong>这说明“长任务自动化”仍然是硬骨头。你做 Codex 工作流时，不要盲目追求全自动，先做“半自动 + 可审查”。</p>
+          <a class="source" href="https://www.businessinsider.com/google-3-5-pro-july-release-tokens-ai-agents-model-2026-6" target="_blank" rel="noopener">来源：Business Insider</a>
+        </article>
+
+        <article class="mini-card">
+          <h3>开源 Agent 可以看，但别一上来给太多权限</h3>
+          <p>面向个人和小团队的开源 AI Agent 工作流正在变多，常见场景是客服分流、内容草稿、发票/表格等重复流程。</p>
+          <p><strong>落地建议：</strong>先给只读权限、低风险任务和小范围试点，把它当“初级员工”而不是“管理员”。</p>
+          <a class="source" href="https://www.techradar.com/pro/how-to-automate-workflows-using-open-source-ai-agents" target="_blank" rel="noopener">来源：TechRadar</a>
+        </article>
+      </div>
     </section>
 
     <section id="freebies" class="card">
       <h2>免费资源 / 薅羊毛 / 信息差</h2>
-      <p class="placeholder">待更新。</p>
+      <div class="grid">
+        <article class="mini-card">
+          <h3>Epic 本周免费游戏：今天记得看切换</h3>
+          <p><strong>当前节点：</strong>PC Gamer 汇总显示，Citizen Sleeper 和 Robobeat 免费到 6 月 25 日；下一轮 6 月 25 日至 7 月 2 日是 RollerCoaster Tycoon 3 和 Voidwrought。</p>
+          <p><strong>建议：</strong>先确认地区页面，能领就领；适合晚上发一条“本周 Epic 值不值得领”的朋友圈/群消息。</p>
+          <a class="source" href="https://www.pcgamer.com/epic-games-store-free-games-list/" target="_blank" rel="noopener">来源：PC Gamer</a>
+        </article>
+
+        <article class="mini-card">
+          <h3>Steam 夏促：先看愿望单，不要乱买</h3>
+          <p>Steam Summer Sale 时间为 6 月 25 日到 7 月 9 日。夏促通常覆盖面大，但不用急着第一小时冲动下单。</p>
+          <p><strong>建议：</strong>优先看愿望单、DLC、捆绑包、史低工具；你常玩的 CS2/7DTD 相关工具、服务器管理类软件也可以顺手看。</p>
+          <a class="source" href="https://www.pcgamer.com/steam-sale-dates/" target="_blank" rel="noopener">来源：PC Gamer</a>
+        </article>
+
+        <article class="mini-card">
+          <h3>Next Fest 刚结束：可把 Demo 转成内容素材</h3>
+          <p>Steam Next Fest 6 月档已经在 6 月 22 日结束，很多 Demo 列表和玩家讨论仍有参考价值。</p>
+          <p><strong>信息差玩法：</strong>挑 3 个“看起来小众但评价不错”的 Demo，做成“夏促前值得加愿望单”的清单。</p>
+          <a class="source" href="https://www.gamesradar.com/games/steam-next-fest-guide/" target="_blank" rel="noopener">来源：GamesRadar</a>
+        </article>
+      </div>
     </section>
 
     <section id="games-community" class="card">
       <h2>游戏 / 限免 / 社区热聊</h2>
-      <p class="placeholder">待更新。</p>
+      <div class="grid">
+        <article class="mini-card">
+          <h3>Valve Steam Machine 预约节点：硬件热度仍在</h3>
+          <p>Valve 的 Steam Machine 采用随机排队预约机制，6 月 25 日是关键节点之一，目的是限制黄牛和管理有限供货。</p>
+          <p><strong>安安视角：</strong>这条适合关注 SteamOS 生态：自己组 SteamOS 设备、客厅游戏机、轻量游戏服务器管理，都能延伸成内容。</p>
+          <a class="source" href="https://www.pcgamer.com/hardware/gaming-pcs/steam-machine-reservations/" target="_blank" rel="noopener">来源：PC Gamer</a>
+        </article>
+
+        <article class="mini-card">
+          <h3>Epic Launcher V2：平台竞争会影响玩家福利</h3>
+          <p>Epic 正在重做启动器，强调更快的商店、玩家资料、用户评价、通用手柄支持和更多社交功能。</p>
+          <p><strong>判断：</strong>Epic 要补的不是一个功能，而是 Steam 长期积累的社区/评价/社交基础设施。对玩家来说，竞争越强，限免和折扣越可能继续有。</p>
+          <a class="source" href="https://www.tomshardware.com/video-games/pc-gaming/epic-games-unveils-launcher-v2-in-re-attempt-to-topple-steam-says-redesigned-storefront-is-up-to-6-5x-faster-promises-player-profiles-user-reviews-universal-controller-support-and-much-more" target="_blank" rel="noopener">来源：Tom's Hardware</a>
+        </article>
+
+        <article class="mini-card">
+          <h3>Fortnite 继续用小活动维持热度</h3>
+          <p>Fortnite 在 6 月 25 日相关更新中加入新的 Sprite 变体，延续赛季活动节奏。</p>
+          <p><strong>可忽略程度：</strong>如果你不玩 Fortnite，这条不用深看；但它适合作为“长线运营游戏如何持续制造小话题”的案例。</p>
+          <a class="source" href="https://timesofindia.indiatimes.com/sports/esports/fortnite/fortnite-to-add-5-new-sprites-on-june-25-including-football-and-fishstick-variants/articleshow/131899951.cms" target="_blank" rel="noopener">来源：Times of India</a>
+        </article>
+      </div>
     </section>
 
     <section id="devops" class="card">
       <h2>开发 / 运维 / 自建服务</h2>
-      <p class="placeholder">待更新。</p>
+      <div class="grid">
+        <article class="mini-card">
+          <h3>今天给自己的 Codex 工作流加“成本记录”</h3>
+          <p>AI 编程工具从订阅制转向更细的用量计费，是一个明显趋势。别只看“它能不能写代码”，还要记录“它写一次值不值”。</p>
+          <p><strong>小动作：</strong>给项目加一个 <code>AI_WORKLOG.md</code>：任务、模型、耗时、人工返工、是否合并。以后你就能知道哪个工作流真省钱。</p>
+        </article>
+
+        <article class="mini-card">
+          <h3>自建服务先做低权限 Agent</h3>
+          <p>如果你后面要让 AI 管 NAS、GitHub、服务器或日报仓库，别一开始就给写权限和删除权限。</p>
+          <p><strong>建议：</strong>先做“读取 + 生成补丁 + 人工批准”，再升级到“自动写入”。日报仓库可以继续当测试场。</p>
+        </article>
+
+        <article class="mini-card">
+          <h3>网页化方向正确：index.html 比长对话更适合手机</h3>
+          <p>这次测试证明一个关键点：新闻内容如果最终要给手机看，HTML 首页比 Markdown 分散文件更接近最终形态。</p>
+          <p><strong>下一步：</strong>可以给 GitHub Pages 加一个固定公开入口，再考虑加搜索和历史归档导航。</p>
+        </article>
+      </div>
     </section>
 
     <section id="risk-policy" class="card">
       <h2>风险 / 安全 / 政策提醒</h2>
-      <p class="placeholder">待更新。</p>
+      <div class="grid">
+        <article class="mini-card">
+          <h3>AI 写代码不是免审：安全和权限边界要前置</h3>
+          <p>关于 AI 编码助手的研究和行业讨论持续指向几个风险：数据泄露、许可证问题、提示注入、不安全代码建议，以及工具调用失败。</p>
+          <p><strong>避坑：</strong>涉及密钥、服务器、数据库、NAS 权限的代码，必须人工审查；不要让 Agent 自己处理生产密钥。</p>
+          <a class="source" href="https://arxiv.org/abs/2604.08352" target="_blank" rel="noopener">参考：arXiv - AI coding assistant security concerns</a>
+        </article>
+
+        <article class="mini-card">
+          <h3>别被“AI Agent 全自动”带节奏</h3>
+          <p>Google DeepMind 最近也在讨论如何借鉴网络安全思路来约束更自治的 AI Agent：越能自主行动，越要有监控、权限隔离和审计。</p>
+          <p><strong>安安规则：</strong>任何自动化任务都要有三件东西：日志、可回滚、失败兜底。</p>
+          <a class="source" href="https://www.axios.com/2026/06/18/google-deepmind-prepares-for-rogue-ai-agents" target="_blank" rel="noopener">来源：Axios</a>
+        </article>
+
+        <article class="mini-card">
+          <h3>安全基本功仍然比追热点更重要</h3>
+          <p>企业安全讨论仍然反复强调：很多事故不是科幻级攻击，而是身份控制、补丁、权限、备份和演练没做好。</p>
+          <p><strong>今天可做：</strong>检查你自己的 GitHub token、NAS 共享权限、服务器密钥和自动化任务权限范围。</p>
+          <a class="source" href="https://www.thetimes.com/business/ceo-summit/article/cyberattack-ai-business-ghjq9d27w" target="_blank" rel="noopener">来源：The Times</a>
+        </article>
+      </div>
     </section>
 
     <section id="actions" class="card">
       <h2>今日行动建议</h2>
-      <p class="placeholder">待更新。</p>
+      <div class="grid">
+        <article class="mini-card">
+          <h3>1. 晚上先领 Epic，再看 Steam 愿望单</h3>
+          <p>不要刷一堆折扣信息，先处理确定收益：Epic 能领就领，Steam 只看愿望单和真正会玩的游戏。</p>
+        </article>
+        <article class="mini-card">
+          <h3>2. 给日报仓库加一次 Pages 测试</h3>
+          <p>确认 GitHub Pages 是否能直接访问 <code>index.html</code>，手机端打开是否舒服，卡片宽度和暗色模式是否正常。</p>
+        </article>
+        <article class="mini-card">
+          <h3>3. 给 Codex/Vibe 建一个成本表</h3>
+          <p>记录任务、耗时、返工量和是否合并。AI Coding 进入用量时代后，这个表会比“感觉很爽”更有价值。</p>
+        </article>
+      </div>
     </section>
 
     <section id="afternoon-update" class="card">
@@ -167,11 +340,20 @@
 
     <section id="media-assets" class="card">
       <h2>图片与素材</h2>
-      <p class="placeholder">本地图片目录：<code>assets/2026-06-25/</code></p>
+      <div class="grid">
+        <article class="mini-card">
+          <h3>配图建议：AI Coding 成本化</h3>
+          <p>可以后续加入一张“AI Coding 成本记录表”的截图，放到 <code>assets/2026-06-25/</code>，用于展示工具从试用到成本管理的变化。</p>
+        </article>
+        <article class="mini-card">
+          <h3>配图建议：Steam / Epic 今日游戏节点</h3>
+          <p>可以后续加入 Steam 愿望单或 Epic 免费游戏页面截图。注意不要使用版权不明的媒体图。</p>
+        </article>
+      </div>
     </section>
 
     <footer>
-      <p>归档规则：每天凌晨 1:00 将本页归档为 <code>archive/YYYY/MM/YYYY-MM-DD.html</code>，然后重置为新的今日页。</p>
+      <p>归档规则：每天凌晨 1:00 将本页归档为 <code>archive/2026/06/2026-06-25.html</code>，然后重置为新的今日页。</p>
     </footer>
   </main>
 </body>
