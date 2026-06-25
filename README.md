@@ -1,66 +1,81 @@
 # anan_everyday_news
 
-安安每日信息流归档库。
+安安每日信息流网页仓库。
 
-核心规则：**每天只维护一个 Markdown 文件，放在仓库根目录，并用日期命名。**
+核心规则：**仓库根目录只维护当前展示页 `index.html`，用于 GitHub Pages 直接展示今天的新闻；历史内容每天凌晨 1:00 归档到 `archive/YYYY/MM/YYYY-MM-DD.html`。**
 
-例如：
+## 当前页面
 
-- [2026-06-25.md](2026-06-25.md)
-- `2026-06-26.md`
-- `2026-06-27.md`
+- [今日新闻页](index.html)
 
-8:30 主简报、10:30 喝水提醒、15:30 下午补充，都更新到当天同一个文件里，不能分散到多个文件，也不能重复写同一条内容。
+## 归档规则
 
-## 最新简报
+- 当前正在更新的网页永远是：`index.html`
+- 每天凌晨 1:00 归档上一天页面到：`archive/YYYY/MM/YYYY-MM-DD.html`
+- 归档后重新生成当天新的 `index.html`
+- 不再把每天的新闻文件全部堆在仓库根目录
+- 不再使用 `daily/`、`afternoon/`、`weekly/`、`monthly/`、`raw/`
 
-<!-- news-index:start -->
-- [2026-06-25｜安安每日信息流](2026-06-25.md)
-<!-- news-index:end -->
+## 自动化任务分工
 
-## 手机端使用方式
+- 08:30：更新 `index.html` 的主简报内容
+- 10:30：只提醒喝水，不写入新闻页
+- 15:30：只更新 `index.html` 的下午增量内容
+- 01:00：归档上一天 `index.html`，并重置当天 `index.html`
 
-1. 打开仓库首页。
-2. 直接点根目录当天文件，例如 `2026-06-25.md`。
-3. 如果只看最新内容，先看文件顶部的“更新记录”。
-4. 如果下午补充较多，只看“15:30 下午增量更新”。
+## 页面结构
 
-## 每日文件结构
+`index.html` 使用固定区块 ID，便于自动化任务定位更新：
 
-每日文件建议固定包含这些区块：
-
-```md
-# 安安每日信息流｜YYYY-MM-DD
-
-## 更新记录
-## 0. 今日一句话总览
-## 1. 8:30 主简报
-## 2. AI / 科技 / 互联网
-## 3. 免费资源 / 薅羊毛 / 信息差
-## 4. 游戏 / 限免 / 社区热聊
-## 5. 开发 / 运维 / 自建服务
-## 6. 风险 / 安全 / 政策提醒
-## 7. 今日行动建议
-## 8. 10:30 喝水提醒与小补丁
-## 9. 15:30 下午增量更新
-## 图片与素材
+```html
+<section id="update-log"></section>
+<section id="overview"></section>
+<section id="top-stories"></section>
+<section id="ai-tech"></section>
+<section id="freebies"></section>
+<section id="games-community"></section>
+<section id="devops"></section>
+<section id="risk-policy"></section>
+<section id="actions"></section>
+<section id="afternoon-update"></section>
+<section id="media-assets"></section>
 ```
-
-## 去重规则
-
-- 同一天所有更新只写进同一个 `YYYY-MM-DD.md`。
-- 新任务运行前必须先读取当天文件。
-- 已经出现过的新闻、资源、游戏限免、AI 动态，不要重复写。
-- 如果同一事件有新进展，直接在原条目下面加“后续更新”，不要另起重复条目。
-- 下午补充只写增量，不重发上午内容。
-- 喝水提醒只占一个小区块，不要再生成一份完整趣闻日报。
 
 ## 图文并茂规则
 
-- 重要条目优先配来源链接、项目链接或图片链接。
-- 图片放在 `assets/YYYY-MM-DD/`，或者使用稳定的公开图片链接。
-- 不为凑图而插入低质量、无关或不稳定图片。
-- 图片下方必须说明来源或用途。
+- 重要条目优先使用来源链接、项目链接、官方截图、活动页图片或稳定公开图片。
+- 本地图片放到 `assets/YYYY-MM-DD/`。
+- 不为凑图插入无关图片。
+- 每张图附近必须说明来源或用途。
+
+## 去重规则
+
+- 08:30 和 15:30 都必须先读取 `index.html`，再更新对应区块。
+- 已经出现过且没有新进展的信息不要重复写。
+- 同一事件有新进展时，在原条目里追加“后续更新”，不要另起重复条目。
+- 15:30 只写增量，不重发上午内容。
+
+## 目录结构
+
+```text
+anan_everyday_news/
+├── index.html                     # 当前今日网页，GitHub Pages 首页
+├── README.md
+├── archive/
+│   └── 2026/
+│       └── 06/
+│           └── 2026-06-25.html    # 每天凌晨 1:00 归档生成
+├── assets/
+│   └── 2026-06-25/
+├── templates/
+│   └── index.html                 # 今日网页模板
+├── scripts/
+│   ├── archive_today.py
+│   ├── update_index.py
+│   └── check_files.py
+├── index/
+└── topics/
+```
 
 ## 索引区
 
@@ -78,14 +93,3 @@
 - [副业 / 信息差](topics/side-hustle.md)
 - [Linux.do / V2EX / 社区热议](topics/community.md)
 - [国内外新闻 / 趣闻](topics/world-news.md)
-
-## 自动化脚本
-
-- `scripts/update_index.py`：扫描根目录日期文件，更新 README 和月份索引。
-- `scripts/check_files.py`：检查文件命名、路径和基础结构是否符合规则。
-
-## 不再使用的结构
-
-- 不再使用 `daily/YYYY/MM/`。
-- 不再使用 `afternoon/YYYY/MM/`。
-- 不维护 weekly、monthly、raw。
