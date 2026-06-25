@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check archive conventions for anan_everyday_news."""
+"""Check archive conventions for the HTML homepage workflow."""
 
 from __future__ import annotations
 
@@ -8,13 +8,20 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DATE_FILE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}\.md$")
 LEGACY_DIRS = ["daily", "afternoon", "weekly", "monthly", "raw"]
+ROOT_DATE_FILES = [re.compile(r"^\d{4}-\d{2}-\d{2}\.md$"), re.compile(r"^\d{4}-\d{2}-\d{2}\.html$")]
 REQUIRED_SECTIONS = [
-    "## 更新记录",
-    "## 1. 8:30 主简报",
-    "## 8. 10:30 喝水提醒与小补丁",
-    "## 9. 15:30 下午增量更新",
+    'id="update-log"',
+    'id="overview"',
+    'id="top-stories"',
+    'id="ai-tech"',
+    'id="freebies"',
+    'id="games-community"',
+    'id="devops"',
+    'id="risk-policy"',
+    'id="actions"',
+    'id="afternoon-update"',
+    'id="media-assets"',
 ]
 
 
@@ -24,26 +31,37 @@ def check_no_legacy_dirs(errors: list[str]) -> None:
             errors.append(f"legacy directory should not exist: {name}/")
 
 
-def check_day_files(errors: list[str]) -> None:
-    day_files = sorted(path for path in ROOT.glob("*.md") if DATE_FILE_RE.match(path.name))
-    if not day_files:
-        errors.append("no root date files found, expected files like 2026-06-25.md")
-        return
+def check_no_root_date_files(errors: list[str]) -> None:
+    for path in ROOT.iterdir():
+        if not path.is_file():
+            continue
+        if any(pattern.match(path.name) for pattern in ROOT_DATE_FILES):
+            errors.append(f"daily date file should not be in repo root: {path.name}; use index.html or archive/YYYY/MM/YYYY-MM-DD.html")
 
-    for path in day_files:
-        text = path.read_text(encoding="utf-8")
-        date = path.stem
-        if f"# 安安每日信息流｜{date}" not in text:
-            errors.append(f"{path.name}: missing expected H1 title with date")
-        for section in REQUIRED_SECTIONS:
-            if section not in text:
-                errors.append(f"{path.name}: missing section {section}")
+
+def check_index_html(errors: list[str]) -> None:
+    index = ROOT / "index.html"
+    if not index.exists():
+        errors.append("index.html is missing")
+        return
+    text = index.read_text(encoding="utf-8")
+    for section in REQUIRED_SECTIONS:
+        if section not in text:
+            errors.append(f"index.html missing required section marker: {section}")
+
+
+def check_template(errors: list[str]) -> None:
+    template = ROOT / "templates" / "index.html"
+    if not template.exists():
+        errors.append("templates/index.html is missing")
 
 
 def main() -> None:
     errors: list[str] = []
     check_no_legacy_dirs(errors)
-    check_day_files(errors)
+    check_no_root_date_files(errors)
+    check_index_html(errors)
+    check_template(errors)
 
     if errors:
         print("Archive convention check failed:")
