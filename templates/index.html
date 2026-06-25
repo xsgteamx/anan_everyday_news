@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="date" content="YYYY-MM-DD">
+  <title>安安每日信息流｜YYYY-MM-DD</title>
+  <style>
+    :root { color-scheme: light dark; --bg:#f6f7fb; --card:#fff; --text:#1f2937; --muted:#6b7280; --line:#e5e7eb; --accent:#2563eb; --accent-soft:#dbeafe; }
+    @media (prefers-color-scheme: dark) { :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --line:#1f2937; --accent:#60a5fa; --accent-soft:#172554; } }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); line-height:1.65; }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .page { width:min(980px,100%); margin:0 auto; padding:18px 14px 48px; }
+    header.hero { padding:22px 18px; border:1px solid var(--line); border-radius:22px; background:linear-gradient(135deg,var(--card),var(--accent-soft)); box-shadow:0 10px 30px rgba(15,23,42,.08); }
+    .eyebrow { color:var(--muted); font-size:14px; margin:0 0 6px; }
+    h1 { font-size:clamp(26px,6vw,42px); line-height:1.15; margin:0 0 10px; }
+    .summary { margin:0; font-size:16px; }
+    nav.quick-nav { display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 0; }
+    nav.quick-nav a { display:inline-block; padding:6px 10px; border:1px solid var(--line); border-radius:999px; background:color-mix(in srgb,var(--card) 86%,transparent); font-size:13px; }
+    section.card { margin-top:16px; padding:18px; border:1px solid var(--line); border-radius:18px; background:var(--card); box-shadow:0 6px 18px rgba(15,23,42,.04); }
+    section.card h2 { margin:0 0 10px; font-size:22px; }
+    .placeholder { color:var(--muted); }
+    .log-table { width:100%; border-collapse:collapse; font-size:14px; }
+    .log-table th,.log-table td { border-bottom:1px solid var(--line); padding:8px; text-align:left; vertical-align:top; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; }
+    .mini-card { border:1px solid var(--line); border-radius:14px; padding:12px; background:color-mix(in srgb,var(--card) 94%,var(--accent-soft)); }
+    figure { margin:12px 0 0; }
+    figure img { width:100%; border-radius:14px; border:1px solid var(--line); }
+    figcaption { color:var(--muted); font-size:13px; margin-top:6px; }
+    footer { color:var(--muted); font-size:13px; margin-top:20px; padding:0 4px; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <p class="eyebrow">今日网页 · YYYY-MM-DD · index.html</p>
+      <h1>安安每日信息流</h1>
+      <p class="summary">今天的新闻、AI、免费资源、游戏社区、开发运维和风险提醒会集中更新在这个页面里。</p>
+      <nav class="quick-nav" aria-label="快速跳转">
+        <a href="#top-stories">重点</a>
+        <a href="#ai-tech">AI 科技</a>
+        <a href="#freebies">薅羊毛</a>
+        <a href="#games-community">游戏社区</a>
+        <a href="#devops">开发运维</a>
+        <a href="#afternoon-update">下午增量</a>
+      </nav>
+    </header>
+
+    <section id="update-log" class="card">
+      <h2>更新记录</h2>
+      <table class="log-table">
+        <thead><tr><th>时间</th><th>类型</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td>08:30</td><td>主简报</td><td>待更新</td></tr>
+          <tr><td>15:30</td><td>下午增量</td><td>待更新</td></tr>
+          <tr><td>01:00</td><td>自动归档</td><td>归档到 archive/YYYY/MM/YYYY-MM-DD.html</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="overview" class="card"><h2>今日一句话总览</h2><p class="placeholder">待 08:30 主简报更新。</p></section>
+    <section id="top-stories" class="card"><h2>今日最值得看的事</h2><p class="placeholder">待更新。</p></section>
+    <section id="ai-tech" class="card"><h2>AI / 科技 / 互联网</h2><p class="placeholder">待更新。</p></section>
+    <section id="freebies" class="card"><h2>免费资源 / 薅羊毛 / 信息差</h2><p class="placeholder">待更新。</p></section>
+    <section id="games-community" class="card"><h2>游戏 / 限免 / 社区热聊</h2><p class="placeholder">待更新。</p></section>
+    <section id="devops" class="card"><h2>开发 / 运维 / 自建服务</h2><p class="placeholder">待更新。</p></section>
+    <section id="risk-policy" class="card"><h2>风险 / 安全 / 政策提醒</h2><p class="placeholder">待更新。</p></section>
+    <section id="actions" class="card"><h2>今日行动建议</h2><p class="placeholder">待更新。</p></section>
+    <section id="afternoon-update" class="card"><h2>15:30 下午增量更新</h2><p class="placeholder">待更新。下午只补增量，不重复上午内容。</p></section>
+    <section id="media-assets" class="card"><h2>图片与素材</h2><p class="placeholder">本地图片目录：<code>assets/YYYY-MM-DD/</code></p></section>
+
+    <footer><p>归档规则：每天凌晨 1:00 将本页归档为 <code>archive/YYYY/MM/YYYY-MM-DD.html</code>，然后重置为新的今日页。</p></footer>
+  </main>
+</body>
+</html>
