@@ -1,0 +1,293 @@
+{
+  "schema_version": "1.0",
+  "date": "2026-06-25",
+  "status": "today",
+  "title": "安安每日信息流",
+  "summary": "今天先看国内/国际头条，再看 AI 编程成本化、游戏限免/折扣决策、自动化安全边界。页面已改为 JSON 数据驱动，index.html 只负责渲染。",
+  "hero_pills": [
+    "HTML 固定壳",
+    "AI 每天只写 JSON",
+    "归档存 JSON，?date=YYYY-MM-DD 回看",
+    "游戏区必须给领取/购买建议"
+  ],
+  "stats": [
+    {"value": "2", "label": "国内/国际头条"},
+    {"value": "3", "label": "今日主线"},
+    {"value": "3", "label": "可领/可做"},
+    {"value": "7+", "label": "来源域名"}
+  ],
+  "source_mix": [
+    {"level": "A", "type": "通讯社 / 准一手", "sources": ["Reuters", "AP", "TOP500"], "role": "负责事实主线，不负责情绪判断。"},
+    {"level": "B", "type": "商业 / 行业媒体", "sources": ["Business Insider", "Axios", "Times of India"], "role": "负责行业侧信号，必须标注为媒体报道。"},
+    {"level": "C", "type": "游戏 / 消费垂直源", "sources": ["PC Gamer", "SteamDB", "GamesRadar", "Tom's Hardware"], "role": "负责限免、折扣、游戏生态，不做重大事实唯一来源。"},
+    {"level": "自", "type": "安安视角", "sources": ["行动建议", "可忽略内容"], "role": "只做编辑判断，不伪装成新闻事实。"}
+  ],
+  "cards": [
+    {
+      "id": "china-tech-wef",
+      "section": "headlines",
+      "priority": 1,
+      "title": "国内头条：中国继续向外解释科技崛起叙事",
+      "summary": "大连世界经济论坛相关活动中，中国继续强调 AI、电动车、量子计算、半导体等领域的技术进步来自创新和企业投入。",
+      "why_it_matters": "这是中国技术自立和国际产业链叙事的一部分。",
+      "for_anan": "关注国产化、私有化部署、自主可控这类企业需求。",
+      "next_action": "以后遇到国产 AI / 内网部署 / 数据不出域需求，可以收进服务案例库。",
+      "source_grade": "A",
+      "category": "国内头条",
+      "sources": [
+        {"name": "Reuters", "url": "https://www.reuters.com/world/asia-pacific/singling-out-huawei-chinas-premier-defends-tech-rise-rejects-subsidy-claims-2026-06-24/"},
+        {"name": "AP", "url": "https://apnews.com/article/497753eb03fbe61ccd192782d72d59be"}
+      ],
+      "image": {
+        "url": "https://image.thum.io/get/width/900/crop/520/noanimate/https://www.reuters.com/world/asia-pacific/singling-out-huawei-chinas-premier-defends-tech-rise-rejects-subsidy-claims-2026-06-24/",
+        "target_url": "https://www.reuters.com/world/asia-pacific/singling-out-huawei-chinas-premier-defends-tech-rise-rejects-subsidy-claims-2026-06-24/",
+        "alt": "Reuters 中国科技报道页面截图",
+        "caption": "图：Reuters 文章页截图"
+      },
+      "details": "这条不要只当外交新闻看。对安安更有用的是长期需求线：企业越来越在意数据不出内网、可审计、低成本替代、国产化方案，这些都可以影响你之后做 AI 知识库、内网工具、自动化服务的方向。"
+    },
+    {
+      "id": "github-copilot-cost",
+      "section": "headlines",
+      "priority": 2,
+      "title": "国际头条：AI 编程工具进入成本与治理阶段",
+      "summary": "GitHub AI 编程需求继续升温，Copilot 相关使用模式更强调用量。AI Coding 不再只是好不好用，还要看账单、返工率、稳定性和安全边界。",
+      "why_it_matters": "这会影响 Codex/Vibe 工作流是否真的省钱。",
+      "for_anan": "记录任务、耗时、返工、是否合并。",
+      "next_action": "先做 3 天 AI 工作日志。",
+      "source_grade": "B",
+      "category": "国际 / AI",
+      "sources": [
+        {"name": "Business Insider", "url": "https://www.businessinsider.com/github-best-month-ever-internal-meeting-2026-6"},
+        {"name": "GitHub Copilot", "url": "https://github.com/features/copilot"}
+      ],
+      "image": {
+        "url": "https://image.thum.io/get/width/1200/crop/760/noanimate/https://github.com/features/copilot",
+        "target_url": "https://github.com/features/copilot",
+        "alt": "GitHub Copilot 页面截图",
+        "caption": "图：GitHub Copilot 页面截图"
+      },
+      "details": "不要只比较模型聪不聪明。真正能落地的 AI 编程服务，要有上下文管理、权限控制、日志、回滚、验收标准和成本统计。这也是后续可产品化的地方。"
+    },
+    {
+      "id": "top500-lineshine",
+      "section": "top-stories",
+      "priority": 1,
+      "title": "LineShine 登顶 TOP500，但别误读成 AI 训练第一",
+      "summary": "TOP500 更偏传统科学计算，不等于 AI 大模型训练能力。HPC、AI 集群和云 GPU 是三套指标。",
+      "why_it_matters": "这类新闻很容易被标题党写成中国 AI 算力第一。",
+      "for_anan": "看到算力榜单先问它到底测的是什么。",
+      "next_action": "以后新闻页里给算力新闻加指标解释。",
+      "source_grade": "A",
+      "category": "HPC",
+      "sources": [
+        {"name": "TOP500", "url": "https://www.top500.org/"},
+        {"name": "Guardian", "url": "https://www.theguardian.com/technology/2026/jun/24/china-supercomputer-world-fastest-top500-ranking-lineshine"}
+      ],
+      "image": {
+        "url": "https://image.thum.io/get/width/900/crop/520/noanimate/https://www.top500.org/",
+        "target_url": "https://www.top500.org/",
+        "alt": "TOP500 网站截图",
+        "caption": "图：TOP500 网站截图"
+      },
+      "details": "更准确的写法是：传统 HPC 榜单领先，但 AI 训练生态还要看 GPU、框架、数据中心网络、软件栈和可获得性。"
+    },
+    {
+      "id": "html-fixed-shell-json",
+      "section": "top-stories",
+      "priority": 2,
+      "title": "这个网站现在应该停止让 AI 直接写整页 HTML",
+      "summary": "页面结构要固定下来，AI 每天只写 JSON。这样不会因为一次生成失误把 CSS、section id 或标签结构写崩。",
+      "why_it_matters": "这是从手工网页变成稳定系统的关键。",
+      "for_anan": "以后只审查 JSON 内容，不用每天检查整页 HTML。",
+      "next_action": "让 08:30 任务改写 data/today.json。",
+      "source_grade": "自",
+      "category": "本站架构",
+      "sources": [
+        {"name": "项目约定", "url": "https://xsgteamx.github.io/anan_everyday_news/"}
+      ],
+      "image": {
+        "url": "https://image.thum.io/get/width/900/crop/520/noanimate/https://github.com/xsgteamx/anan_everyday_news",
+        "target_url": "https://github.com/xsgteamx/anan_everyday_news",
+        "alt": "anan_everyday_news 仓库截图",
+        "caption": "图：GitHub 仓库页面截图"
+      },
+      "details": "固定 HTML 壳 + JSON 数据源是更稳的结构。以后可以继续加构建脚本、JSON 校验、图片缓存，但不应该再让模型每天直接改整份网页。"
+    },
+    {
+      "id": "epic-free-games-decision",
+      "section": "do-now",
+      "priority": 1,
+      "title": "Epic 免费游戏：不要截首页，直接看清单",
+      "summary": "Epic 动态首页经常截不到当前限免内容，所以应该用 PC Gamer 清单、具体游戏页或本地截图做图源。",
+      "source_grade": "C",
+      "category": "限免决策",
+      "sources": [
+        {"name": "PC Gamer", "url": "https://www.pcgamer.com/epic-games-store-free-games-list/"}
+      ],
+      "image": {
+        "url": "https://image.thum.io/get/width/900/crop/520/noanimate/https://www.pcgamer.com/epic-games-store-free-games-list/",
+        "target_url": "https://www.pcgamer.com/epic-games-store-free-games-list/",
+        "alt": "PC Gamer Epic 免费游戏清单截图",
+        "caption": "图：PC Gamer 限免清单截图，避免 Epic 动态首页"
+      },
+      "decision": {
+        "游戏": "RollerCoaster Tycoon 3 / Voidwrought",
+        "平台": "Epic Games Store",
+        "类型": "模拟经营 / 类银河恶魔城动作平台",
+        "活动": "限免",
+        "中文/评价": "未确认，需进入商店页核对",
+        "适合谁": "喜欢经营建造、探索动作的人",
+        "理由": "免费入库成本为 0；RCT3 有经典经营价值，Voidwrought 适合喜欢探索动作的人。"
+      },
+      "verdict": "必领入库",
+      "details": "以后 Epic 卡片都要写清楚游戏名、平台、类型、截止时间、中文支持、评价、适合谁、安安建议。不能只写本周限免。"
+    },
+    {
+      "id": "steam-sale-steamdb",
+      "section": "do-now",
+      "priority": 2,
+      "title": "Steam 夏促：用 SteamDB 看折扣，不要只看首页",
+      "summary": "Steam 首页营销味太重，SteamDB 更适合查史低、折扣深度和愿望单优先级。",
+      "source_grade": "C",
+      "category": "折扣决策",
+      "sources": [
+        {"name": "SteamDB", "url": "https://steamdb.info/sales/"},
+        {"name": "PC Gamer", "url": "https://www.pcgamer.com/steam-sale-dates/"}
+      ],
+      "image": {
+        "url": "https://image.thum.io/get/width/900/crop/520/noanimate/https://steamdb.info/sales/",
+        "target_url": "https://steamdb.info/sales/",
+        "alt": "SteamDB 折扣页面截图",
+        "caption": "图：SteamDB 折扣页截图，比 Steam 首页更可读"
+      },
+      "decision": {
+        "窗口": "6 月 25 日至 7 月 9 日",
+        "平台": "Steam",
+        "类型": "夏促 / 折扣",
+        "优先级": "愿望单、DLC、捆绑包、史低工具",
+        "建议": "先筛不急买",
+        "理由": "第一天最容易冲动消费，先标记再决定。"
+      },
+      "verdict": "先筛不急买"
+    },
+    {
+      "id": "github-actions-showcase",
+      "section": "do-now",
+      "priority": 3,
+      "title": "把日报仓库变成自动化展示案例",
+      "summary": "HTML 固定壳、JSON 数据源、归档脚本、来源等级、图文卡片，这套流程可以整理成作品集。",
+      "source_grade": "自",
+      "category": "自动化",
+      "sources": [
+        {"name": "GitHub Actions", "url": "https://github.com/features/actions"}
+      ],
+      "image": {
+        "url": "https://image.thum.io/get/width/900/crop/520/noanimate/https://github.com/features/actions",
+        "target_url": "https://github.com/features/actions",
+        "alt": "GitHub Actions 页面截图",
+        "caption": "图：GitHub Actions 页面截图"
+      },
+      "details": "这不是只服务你看新闻，也能变成副业作品集：帮小团队做自动日报、竞品监控、游戏限免页、项目周报页。"
+    },
+    {
+      "id": "workspace-cli-boundary",
+      "section": "ai-tech",
+      "title": "Workspace CLI 争议：Agent 办公工具会撞上组织边界",
+      "summary": "真正值得看的是个人效率工具和公司产品/权限边界的冲突。",
+      "source_grade": "B",
+      "category": "Agent",
+      "sources": [
+        {"name": "Google Workspace", "url": "https://workspace.google.com/"},
+        {"name": "Times of India", "url": "https://timesofindia.indiatimes.com/technology/tech-news/google-engineer-reportedly-sacked-over-viral-workspace-cli-ai-tool-says-the-fear-wasnt-my-tool-it-was-agents-as-/articleshow/131969292.cms"}
+      ],
+      "image": {"url": "https://image.thum.io/get/width/900/crop/520/noanimate/https://workspace.google.com/", "target_url": "https://workspace.google.com/", "alt": "Google Workspace 页面截图", "caption": "图：Google Workspace 页面截图"},
+      "details": "公司内部工具如果接近产品线，或者碰到权限、数据、合规，个人创新就会变复杂。以后做工具型副业，边界要写清楚。"
+    },
+    {
+      "id": "agent-security",
+      "section": "ai-tech",
+      "title": "Agent 越能自动执行，越需要审计和回滚",
+      "summary": "日报自动化也不能盲目全自动。GitHub 写入、归档、改首页，都要能回滚。",
+      "source_grade": "B",
+      "category": "Agent 安全",
+      "sources": [{"name": "Axios", "url": "https://www.axios.com/2026/06/18/google-deepmind-prepares-for-rogue-ai-agents"}],
+      "image": {"url": "https://image.thum.io/get/width/900/crop/520/noanimate/https://deepmind.google/", "target_url": "https://deepmind.google/", "alt": "Google DeepMind 页面截图", "caption": "图：Google DeepMind 页面截图"}
+    },
+    {
+      "id": "docker-delivery-process",
+      "section": "ai-tech",
+      "title": "AI Coding 副业机会不在卖提示词，而在交付流程",
+      "summary": "能交付环境排障、仓库规范、任务拆分、自动化验收、部署记录和回滚方案，比卖提示词靠谱。",
+      "source_grade": "自",
+      "category": "DevOps",
+      "sources": [{"name": "Docker", "url": "https://www.docker.com/"}],
+      "image": {"url": "https://image.thum.io/get/width/900/crop/520/noanimate/https://www.docker.com/", "target_url": "https://www.docker.com/", "alt": "Docker 页面截图", "caption": "图：Docker 页面截图"}
+    },
+    {
+      "id": "steamos-ecosystem",
+      "section": "games-community",
+      "title": "SteamOS / Steam Deck：更值得看硬件生态，不是只看新品",
+      "summary": "它对你的价值在于能关联 SteamOS、客厅 PC、家庭服务器、游戏串流和自建游戏环境。",
+      "source_grade": "C",
+      "category": "SteamOS",
+      "sources": [{"name": "Steam Deck", "url": "https://www.steamdeck.com/en/"}],
+      "image": {"url": "https://image.thum.io/get/width/900/crop/520/noanimate/https://www.steamdeck.com/en/", "target_url": "https://www.steamdeck.com/en/", "alt": "Steam Deck / SteamOS 页面截图", "caption": "图：Steam Deck / SteamOS 页面截图"}
+    },
+    {
+      "id": "epic-launcher-v2",
+      "section": "games-community",
+      "title": "Epic Launcher V2：别看宣传，关注它能否补社区短板",
+      "summary": "玩家资料、用户评价、通用手柄和社交能力，比启动器变快更有长期意义。",
+      "source_grade": "C",
+      "category": "Epic",
+      "sources": [{"name": "Tom's Hardware", "url": "https://www.tomshardware.com/video-games/pc-gaming/epic-games-unveils-launcher-v2-in-re-attempt-to-topple-steam-says-redesigned-storefront-is-up-to-6-5x-faster-promises-player-profiles-user-reviews-universal-controller-support-and-much-more"}],
+      "image": {"url": "https://image.thum.io/get/width/900/crop/520/noanimate/https://store.epicgames.com/en-US/news", "target_url": "https://store.epicgames.com/en-US/news", "alt": "Epic Games Store 新闻页面截图", "caption": "图：Epic 新闻页截图，避免首页焦点漂移"}
+    },
+    {
+      "id": "ai-code-review-risk",
+      "section": "risk-policy",
+      "type": "compact",
+      "title": "AI 写代码不是免审",
+      "summary": "涉及密钥、服务器、数据库、NAS 权限的改动必须人工看。自动化越顺手，越要有日志、回滚和权限隔离。",
+      "source_grade": "C",
+      "category": "风险",
+      "sources": [{"name": "arXiv", "url": "https://arxiv.org/abs/2604.08352"}]
+    },
+    {
+      "id": "external-image-risk",
+      "section": "risk-policy",
+      "type": "compact",
+      "title": "截图服务和外链图片都可能失效",
+      "summary": "今天先用外链截图看效果；长期方案应把关键图保存到 assets/YYYY-MM-DD/，归档页才稳定。",
+      "source_grade": "自",
+      "category": "本站维护",
+      "sources": [{"name": "项目规则", "url": "https://github.com/xsgteamx/anan_everyday_news"}]
+    },
+    {
+      "id": "ignore-small-game-updates",
+      "section": "ignore",
+      "type": "compact",
+      "title": "普通游戏小更新",
+      "summary": "如果不和 CS2/7DTD、自建服、限免折扣、SteamOS 相关，先不看。",
+      "source_grade": "自",
+      "category": "编辑判断",
+      "sources": [{"name": "安安偏好", "url": "https://xsgteamx.github.io/anan_everyday_news/"}]
+    },
+    {
+      "id": "ignore-ai-slogans",
+      "section": "ignore",
+      "type": "compact",
+      "title": "纯 AI 宣传口号",
+      "summary": "没有具体产品、价格、开源地址、案例、限制条件的 AI 新闻，不进主卡。",
+      "source_grade": "自",
+      "category": "编辑判断",
+      "sources": [{"name": "安安偏好", "url": "https://xsgteamx.github.io/anan_everyday_news/"}]
+    }
+  ],
+  "actions": [
+    {"title": "先领 Epic，再看 SteamDB", "detail": "Epic 看清单，不看动态首页；Steam 看 SteamDB，不被首页营销带跑。"},
+    {"title": "给 Codex 工作流记一条成本日志", "detail": "任务、耗时、返工量、是否合并，先手动记录 3 天。"},
+    {"title": "把关键截图缓存到 assets", "detail": "外链截图只适合测试，正式归档要把关键图存本地。"}
+  ]
+}
