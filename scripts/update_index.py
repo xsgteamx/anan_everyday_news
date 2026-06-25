@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Update indexes for the root-date-file archive.
+"""Update README and archive indexes for the HTML homepage workflow.
 
 Rules:
-- Daily files live in repository root as YYYY-MM-DD.md.
-- README.md contains a latest-news block between markers.
-- index/YYYY.md and index/YYYY-MM.md are generated from root date files.
+- Current page is root index.html.
+- Archived pages live in archive/YYYY/MM/YYYY-MM-DD.html.
+- index/YYYY.md and index/YYYY-MM.md are lightweight navigation files.
 """
 
 from __future__ import annotations
@@ -14,90 +14,89 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DATE_FILE_RE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})\.md$")
-README_START = "<!-- news-index:start -->"
-README_END = "<!-- news-index:end -->"
+ARCHIVE_RE = re.compile(r"^archive/(\d{4})/(\d{2})/(\d{4}-\d{2}-\d{2})\.html$")
+README_START = "<!-- archive-index:start -->"
+README_END = "<!-- archive-index:end -->"
 
 
-def find_day_files() -> list[Path]:
-    files: list[Path] = []
-    for path in ROOT.glob("*.md"):
-        if DATE_FILE_RE.match(path.name):
-            files.append(path)
-    return sorted(files, reverse=True)
+def archive_pages() -> list[Path]:
+    pages = []
+    for path in ROOT.glob("archive/*/*/*.html"):
+        rel = path.relative_to(ROOT).as_posix()
+        if ARCHIVE_RE.match(rel):
+            pages.append(path)
+    return sorted(pages, reverse=True)
 
 
 def extract_title(path: Path) -> str:
-    for line in path.read_text(encoding="utf-8").splitlines():
-        if line.startswith("# "):
-            return line[2:].strip()
+    text = path.read_text(encoding="utf-8", errors="ignore")
+    title_match = re.search(r"<title>(.*?)</title>", text, flags=re.S)
+    if title_match:
+        return re.sub(r"\s+", " ", title_match.group(1)).strip()
+    h1_match = re.search(r"<h1[^>]*>(.*?)</h1>", text, flags=re.S)
+    if h1_match:
+        return re.sub(r"<.*?>", "", h1_match.group(1)).strip()
     return path.stem
 
 
-def replace_between_markers(text: str, start: str, end: str, replacement: str) -> str:
-    if start not in text or end not in text:
+def replace_between_markers(text: str, replacement: str) -> str:
+    if README_START not in text or README_END not in text:
         return text
-    before = text.split(start, 1)[0]
-    after = text.split(end, 1)[1]
-    return f"{before}{start}\n{replacement}\n{end}{after}"
+    before = text.split(README_START, 1)[0]
+    after = text.split(README_END, 1)[1]
+    return f"{before}{README_START}\n{replacement}\n{README_END}{after}"
 
 
-def update_readme(day_files: list[Path]) -> None:
+def update_readme(pages: list[Path]) -> None:
     readme = ROOT / "README.md"
     if not readme.exists():
         return
-
-    latest = day_files[:10]
-    if latest:
-        replacement = "\n".join(f"- [{extract_title(path)}]({path.name})" for path in latest)
-    else:
-        replacement = "- 暂无"
-
+    latest = pages[:10]
+    replacement = "\n".join(f"- [{path.stem}]({path.relative_to(ROOT).as_posix()})" for path in latest) if latest else "- 暂无归档"
     text = readme.read_text(encoding="utf-8")
-    new_text = replace_between_markers(text, README_START, README_END, replacement)
-    readme.write_text(new_text, encoding="utf-8")
+    readme.write_text(replace_between_markers(text, replacement), encoding="utf-8")
 
 
-def update_month_indexes(day_files: list[Path]) -> None:
+def update_indexes(pages: list[Path]) -> None:
     index_dir = ROOT / "index"
     index_dir.mkdir(exist_ok=True)
 
     grouped: dict[str, dict[str, list[Path]]] = defaultdict(lambda: defaultdict(list))
-    for path in day_files:
-        match = DATE_FILE_RE.match(path.name)
+    for path in pages:
+        match = ARCHIVE_RE.match(path.relative_to(ROOT).as_posix())
         if not match:
             continue
-        year, month, _day = match.groups()
+        year, month, _date = match.groups()
         grouped[year][month].append(path)
 
     for year, months in grouped.items():
-        month_lines = [f"# {year} 年简报索引", "", "## 月份", ""]
+        year_lines = [f"# {year} 年归档索引", "", "## 月份", ""]
         for month in sorted(months):
-            month_lines.append(f"- [{year} 年 {int(month)} 月]({year}-{month}.md)")
-        month_lines.extend(["", "## 规则", "", "- 每日文件保存在仓库根目录，例如 `../YYYY-MM-DD.md`。", "- 月份索引只做跳转，不存放正文。", ""])
-        (index_dir / f"{year}.md").write_text("\n".join(month_lines), encoding="utf-8")
+            year_lines.append(f"- [{year} 年 {int(month)} 月]({year}-{month}.md)")
+        year_lines.append("")
+        (index_dir / f"{year}.md").write_text("\n".join(year_lines), encoding="utf-8")
 
-        for month, paths in months.items():
+        for month, month_pages in months.items():
             rows = [
-                f"# {year} 年 {int(month)} 月简报索引",
+                f"# {year} 年 {int(month)} 月归档索引",
                 "",
-                "## 每日文件",
+                "## 历史页面",
                 "",
-                "| 日期 | 当天文件 | 标题 |",
+                "| 日期 | 页面 | 标题 |",
                 "|---|---|---|",
             ]
-            for path in sorted(paths, reverse=True):
-                date = path.stem
-                rows.append(f"| {date} | [查看](../{path.name}) | {extract_title(path)} |")
-            rows.extend(["", "## 说明", "", "- 8:30 主简报、10:30 喝水提醒、15:30 下午补充都应写入同一个根目录日期文件。", "- 运行 `python scripts/update_index.py` 可刷新 README 和月份索引。", ""])
+            for page in sorted(month_pages, reverse=True):
+                rel = page.relative_to(ROOT).as_posix()
+                rows.append(f"| {page.stem} | [查看](../{rel}) | {extract_title(page)} |")
+            rows.append("")
             (index_dir / f"{year}-{month}.md").write_text("\n".join(rows), encoding="utf-8")
 
 
 def main() -> None:
-    day_files = find_day_files()
-    update_readme(day_files)
-    update_month_indexes(day_files)
-    print(f"Updated indexes from {len(day_files)} root date file(s).")
+    pages = archive_pages()
+    update_readme(pages)
+    update_indexes(pages)
+    print(f"Updated indexes from {len(pages)} archived HTML page(s).")
 
 
 if __name__ == "__main__":
