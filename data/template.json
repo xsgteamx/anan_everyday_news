@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "date": "YYYY-MM-DD",
+  "status": "today",
+  "title": "安安每日信息流",
+  "summary": "待 08:30 主简报更新。",
+  "hero_pills": [
+    "HTML 固定壳",
+    "AI 每天只写 JSON",
+    "归档存 JSON，?date=YYYY-MM-DD 回看"
+  ],
+  "stats": [
+    {"value": "0", "label": "国内/国际头条"},
+    {"value": "0", "label": "今日主线"},
+    {"value": "0", "label": "可领/可做"},
+    {"value": "0", "label": "来源域名"}
+  ],
+  "source_mix": [],
+  "cards": [],
+  "actions": []
+}
